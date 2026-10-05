@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>تحدي الـ 30 يوماً للانتشار الفايرال المليوني</title>
+<meta name="description" content="19 قالب سكريبت فايرال وخريطة الريلز للوصول إلى 40 مليون مشاهدة بـ 47$ فقط.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+:root{--g:#0F2A24;--g2:#16382F;--gold:#C9A45C;--gd:#8A6A2B;--paper:#FAF8F3;--ink:#1B2420;--mute:#55605A;--line:#DDD5C3;--ease:cubic-bezier(.2,.7,.2,1);
+  /* نسبة مكان غلاف القوالب: غيّرها حسب تصميم الغلاف (مثلاً 1/1 أو 3/4) */
+  --cover-ratio:4/5}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 18px/1.95 'IBM Plex Sans Arabic',Tahoma,sans-serif}
+h1,h2,h3,summary,.num{font-family:'Amiri','Traditional Arabic',serif;font-weight:700;margin:0;line-height:1.4}
+.w{max-width:1080px;margin:0 auto;padding:0 24px}
+section{padding:104px 0}
+h2{font-size:46px;text-align:center}
+.orn{display:flex;align-items:center;gap:16px;max-width:260px;margin:20px auto 56px;color:var(--gold)}
+.orn::before,.orn::after{content:"";flex:1;height:1px;background:currentColor}
+.orn i{width:9px;height:9px;background:currentColor;rotate:45deg}
+.lead{max-width:720px;margin:-24px auto 48px;text-align:center;color:var(--mute);font-size:20px}
+.dark{background:var(--g);color:#F1ECDD}
+.dark .lead{color:#CFC9B5}
+a:focus-visible,summary:focus-visible{outline:3px solid var(--gold);outline-offset:4px}
+
+/* الأزرار: لمعة تعبر عند المرور */
+.btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;max-width:100%;min-height:58px;padding:12px 44px;background:var(--gold);color:var(--g);font:600 19px/1.5 'IBM Plex Sans Arabic',sans-serif;text-align:center;text-decoration:none;border:1px solid var(--gold);transition:transform .25s var(--ease)}
+.btn::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.55) 50%,transparent 65%);transform:translateX(130%);transition:transform .8s var(--ease)}
+.btn:hover{transform:translateY(-3px)}
+.btn:hover::after{transform:translateX(-130%)}
+.btn:active{transform:none}
+
+/* ========== الهيرو ========== */
+.hero{padding:40px 0}
+.frame{border:1px solid var(--gold);padding:10px}
+.frame-in{border:1px solid rgba(201,164,92,.45);padding:72px 40px 80px;text-align:center}
+.hero h1{font-size:68px;max-width:860px;margin:0 auto 24px}
+.hero p{font-size:21px;color:#CFC9B5;max-width:640px;margin:0 auto 40px}
+.note{margin-top:20px;font-size:15px;color:#A9A38E}
+
+/* عدّاد الـ 30 يوماً */
+.count{position:relative;display:inline-block;min-width:1.1em;text-align:center;color:var(--gold)}
+.count::after{content:"";position:absolute;inset-inline:0;bottom:-1px;height:3px;background:var(--gold);transform-origin:right;transition:transform .9s var(--ease)}
+.js .count::after{transform:scaleX(0)}
+.js .count.done::after{transform:scaleX(1)}
+
+/* الختم: حلقة من 30 علامة تضيء مع العدّاد */
+.seal{position:relative;width:148px;height:148px;margin:0 auto 32px;display:grid;place-items:center;color:var(--gold)}
+.seal svg{position:absolute;inset:0;width:100%;height:100%}
+.tk{stroke:rgba(201,164,92,.28);stroke-width:2.6;stroke-linecap:round;transition:stroke .15s}
+.tk.on{stroke:var(--gold)}
+.seal-c{width:102px;height:102px;border:1.5px solid var(--gold);border-radius:50%;display:grid;place-content:center;text-align:center;line-height:1}
+.seal .num{font-size:46px}
+.seal span{font-size:15px;line-height:1.5}
+.seal.done .seal-c{animation:pop .7s var(--ease)}
+
+/* مكان غلاف القوالب */
+.slot{position:relative}
+.cover-slot{margin:0 auto 40px;width:min(100%,360px);aspect-ratio:var(--cover-ratio)}
+.cover-slot img{display:none;width:100%;height:100%;object-fit:contain;animation:float 6s ease-in-out infinite}
+.slot.is-loaded img{display:block}
+.slot.is-loaded .ph{display:none}
+.cover-slot .ph{position:absolute;inset:0;display:grid;place-content:center;gap:6px;padding:24px;text-align:center;color:#CFC9B5;font-size:16px;line-height:1.7;border:1.5px dashed rgba(201,164,92,.65)}
+.ph strong{font:700 26px/1.4 'Amiri',serif;color:var(--gold)}
+.ph code{direction:ltr;font:500 13px/1.6 ui-monospace,Menlo,monospace;color:#A9A38E}
+
+/* دخول الهيرو بتسلسل واحد */
+.hero .a{animation:rise .9s var(--ease) both;animation-delay:var(--d,0s)}
+
+/* ========== شريط الأرقام ========== */
+.cred{padding:0;border-bottom:1px solid var(--line)}
+.cred .w{display:grid;grid-template-columns:repeat(3,1fr)}
+.cred .w>div{text-align:center;padding:44px 16px;border-inline-start:1px solid var(--line)}
+.cred .w>div:first-child{border:0}
+.cred .num{font-size:60px;color:var(--g);display:block;line-height:1.2}
+.cred span.l{color:var(--mute);font-size:16px}
+
+/* ========== لمن هذه القوالب ========== */
+.who{display:grid;grid-template-columns:1fr 1fr;gap:0 64px}
+.who p{margin:0;padding:22px 0;border-bottom:1px solid var(--line);display:flex;gap:16px}
+.who p::before{content:"";flex:none;width:9px;height:9px;margin-top:13px;background:var(--gold);rotate:45deg}
+
+/* ========== المشكلة والواقع والحل ========== */
+.vs h2{color:#F1ECDD}
+.vs .lead{font-size:22px;color:#F1ECDD;max-width:780px}
+.vs-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+.vs-c{padding:8px 40px}
+.vs-c+.vs-c{border-inline-start:1px solid rgba(201,164,92,.4)}
+.vs-c h3{font-size:34px;color:var(--gold);margin-bottom:12px}
+.vs-c p{margin:0}
+.vs-c.c1{color:#A9A38E}
+
+/* ========== القصة ========== */
+.story .cols{display:grid;grid-template-columns:1.1fr .9fr;gap:72px;align-items:center}
+.story h2{text-align:right}
+.story .orn{margin:20px 0 32px;margin-inline-end:auto}
+.story p{margin:0 0 18px}
+.coach{display:flex;align-items:center;gap:28px;margin:0 0 32px}
+.coach-photo{flex:none;width:156px;aspect-ratio:4/5;padding:6px;border:1px solid var(--gold);border-radius:999px 999px 6px 6px}
+.coach-photo .in{position:absolute;inset:6px;overflow:hidden;border-radius:999px 999px 3px 3px;background:var(--g)}
+.coach-photo img{display:none;width:100%;height:100%;object-fit:cover;object-position:center top}
+.coach-photo .ph{position:absolute;inset:0;display:grid;place-content:center;gap:4px;text-align:center;color:var(--gold);font-size:13px;line-height:1.5;padding:10px}
+.coach-photo .ph b{font:700 54px/1 'Amiri',serif}
+.coach blockquote{margin:0 0 10px;font:700 26px/1.65 'Amiri',serif;color:var(--g)}
+.coach figcaption{display:flex;flex-direction:column;line-height:1.6}
+.coach figcaption strong{font-weight:600;color:var(--gd);font-size:18px}
+.coach figcaption span{color:var(--mute);font-size:15px}
+.big{display:flex;flex-direction:column;gap:20px}
+.big .num{font-size:96px;line-height:1}
+.bar{height:14px;background:var(--line);position:relative;margin-top:8px}
+.bar::after{content:"";position:absolute;inset:0 auto 0 0;width:3%;min-width:8px;background:var(--gd)}
+.big small{color:var(--mute);font-size:16px;display:block}
+
+/* ========== النتائج + متتبّع الـ 30 يوماً ========== */
+.res-grid{display:grid;grid-template-columns:1fr 390px;gap:64px;align-items:start}
+.res-i{display:grid;grid-template-columns:auto 1fr;gap:22px;padding:30px 0;border-bottom:1px solid var(--line)}
+.res-i::before{content:"";width:12px;height:12px;margin-top:17px;border:1.5px solid var(--gold);rotate:45deg;transition:background .4s}
+.res-i h3{font-size:30px;color:var(--g)}
+.res-i:first-child h3{color:var(--gd)}
+.res-i p{margin:4px 0 0;color:var(--mute)}
+.js .res-i{opacity:.42;transition:opacity .5s var(--ease)}
+.js .res-i.on{opacity:1}
+.res-i.on::before{background:var(--gold)}
+
+.track{position:sticky;top:72px;padding:30px 28px 24px;color:#F1ECDD;background:var(--g);border:1px solid var(--gold);outline:1px solid rgba(201,164,92,.45);outline-offset:-8px}
+html:not(.js) .track{display:none}
+html:not(.js) .res-grid{grid-template-columns:1fr}
+.track-head{display:flex;align-items:baseline;justify-content:center;gap:12px;line-height:1}
+.track-head .l,.track-head .of{font-size:17px;color:#CFC9B5}
+.track-head .num{font-size:76px;color:var(--gold);min-width:1.1em;text-align:center}
+.days{list-style:none;margin:18px 0 0;padding:0;display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+.days li{aspect-ratio:1;display:grid;place-items:center;font:600 13px/1 'IBM Plex Sans Arabic',sans-serif;color:rgba(241,236,221,.5);border:1px solid rgba(201,164,92,.3);transition:background .3s,color .3s,transform .3s var(--ease),box-shadow .3s}
+.days li.on{background:var(--gold);color:var(--g);border-color:var(--gold)}
+.days li.cur{position:relative;z-index:1;transform:scale(1.14);background:var(--paper);color:var(--g);box-shadow:0 0 0 3px rgba(201,164,92,.45)}
+.days li:last-child{border-width:2px;border-color:var(--gold)}
+.track.done .days li:last-child{animation:pop .8s var(--ease)}
+
+/* نمو المتابعين: رقم يتصاعد + منحنى ينمو + فقاعات */
+.fol{margin-top:20px;padding-top:16px;border-top:1px solid rgba(201,164,92,.35);text-align:center}
+.fol-l{font-size:15px;color:#CFC9B5;line-height:1.5}
+.fol-l small{font-size:13px;color:#A9A38E}
+.fol-n{position:relative;display:flex;align-items:baseline;justify-content:center;gap:10px;margin-top:2px}
+.fol-n .num{font-size:50px;line-height:1.25;color:var(--gold)}
+.fol-n .u{font-size:16px;color:#CFC9B5}
+.bubs{position:absolute;inset:0;pointer-events:none}
+.bub{position:absolute;top:6px;left:calc(50% + var(--x,0px));direction:ltr;white-space:nowrap;font:600 15px/1 'IBM Plex Sans Arabic',sans-serif;color:var(--gold);opacity:0;animation:bub 1.3s ease-out forwards}
+.spark{display:block;width:100%;height:auto;margin-top:6px}
+.spark #spD{transition:r .3s}
+.t-foot{margin-top:12px;text-align:center;font-size:15px;color:#CFC9B5;transition:color .3s}
+.track.done .t-foot{color:var(--gold);font-weight:600}
+.track.done .spark #spD{animation:beat 1.4s ease-in-out infinite}
+
+/* ========== العرض ========== */
+.offer h2{color:#F1ECDD}
+.offer .box{max-width:780px;margin:0 auto;border:1px solid var(--gold);padding:10px}
+.offer .in{border:1px solid rgba(201,164,92,.45);padding:56px 48px;text-align:center}
+.offer ul{list-style:none;margin:0 0 36px;padding:0;text-align:right}
+.offer li{padding:18px 0;border-bottom:1px solid rgba(201,164,92,.3)}
+.offer li b{color:var(--gold);font-weight:600}
+.inv{font-size:17px;color:#CFC9B5;margin-bottom:6px}
+.was{color:#A9A38E;text-decoration:line-through;font-size:20px}
+.price-l{margin-top:10px;color:#F1ECDD;font-size:18px}
+.price{display:flex;align-items:baseline;justify-content:center;gap:14px;line-height:1.1}
+.now{font-size:112px;color:var(--gold)}
+.only{font:700 34px/1 'Amiri',serif;color:var(--gold)}
+.sub{color:#CFC9B5;margin:6px 0 28px}
+
+/* ========== الأسئلة الشائعة ========== */
+details{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;font-size:26px;list-style:none;display:flex;justify-content:space-between;gap:16px;padding:24px 4px;transition:color .2s}
+summary:hover{color:var(--gd)}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";flex:none;color:var(--gd);font-size:34px;line-height:1.1;transition:transform .35s var(--ease)}
+details[open] summary::after{transform:rotate(45deg)}
+details p{margin:0 0 26px;padding-inline:4px;color:var(--mute);max-width:720px}
+@supports (interpolate-size:allow-keywords){
+  :root{interpolate-size:allow-keywords}
+  details::details-content{block-size:0;overflow:clip;transition:block-size .35s var(--ease),content-visibility .35s allow-discrete}
+  details[open]::details-content{block-size:auto}
+}
+
+.final{text-align:center}
+.final h2{font-size:54px;margin-bottom:36px}
+.final .orn{margin-bottom:28px}
+
+/* ========== حركات مشتركة ========== */
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.12)}100%{transform:scale(1)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes bub{0%{opacity:0;transform:translate(-50%,8px)}18%{opacity:1}100%{opacity:0;transform:translate(-50%,-54px)}}
+@keyframes beat{0%,100%{r:4.5}50%{r:7.5}}
+.js .rv{opacity:0}
+.js .rv.in{opacity:1;animation:rise .75s var(--ease) var(--d,0s) backwards}
+
+@media (max-height:780px) and (min-width:861px){
+  .track{padding:22px 24px 18px}
+  .track-head .num{font-size:60px}
+  .fol-n .num{font-size:42px}
+  .spark{display:none}
+}
+
+/* ========== الجوال ========== */
+@media (max-width:860px){
+  section{padding:68px 0}h2{font-size:34px}
+  .hero h1{font-size:42px}.frame-in{padding:48px 20px 56px}
+  .cover-slot{max-width:300px}
+  .cred .w,.who,.vs-grid,.story .cols,.res-grid{grid-template-columns:1fr}
+  .cred .w>div{border:0;border-top:1px solid var(--line);padding:24px}.cred .w>div:first-child{border:0}
+  .vs .lead{font-size:20px}
+  .vs-c{padding:8px 0 32px}.vs-c+.vs-c{border:0}
+  .story .cols{gap:40px}
+  .coach{gap:18px}.coach-photo{width:112px}.coach blockquote{font-size:21px}
+  .res-grid{gap:20px}
+  .res-i h3{font-size:25px}
+  .track{order:-1;top:8px;z-index:5;padding:12px 16px 14px;outline:0;display:grid;grid-template-columns:auto 1fr;grid-template-areas:"head fol" "days days";align-items:center;column-gap:14px}
+  .track-head{grid-area:head}.track-head .num{font-size:44px}.track-head .l,.track-head .of{font-size:15px}
+  .fol{grid-area:fol;margin:0;padding:0;border:0;justify-self:end}
+  .fol-l,.spark,.bubs,.t-foot{display:none}
+  .fol-n{margin:0}.fol-n .num{font-size:30px}.fol-n .u{font-size:14px}
+  .days{grid-area:days;grid-template-columns:repeat(30,1fr);gap:2px;margin-top:8px}
+  .days li{aspect-ratio:auto;height:12px;font-size:0;border-width:0;background:rgba(201,164,92,.22)}
+  .days li.on{background:var(--gold)}
+  .days li.cur{transform:scaleY(1.7);box-shadow:none;background:var(--paper)}
+  .offer .in{padding:40px 22px}.now{font-size:84px}.final h2{font-size:38px}
+  summary{font-size:22px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .btn,.btn::after,.days li,summary::after{transition:none}
+  .hero .a,.js .rv.in,.cover-slot img,.seal.done .seal-c,.track.done .days li:last-child,.track.done .spark #spD{animation:none}
+  .js .rv{opacity:1}
+  .js .res-i{opacity:1}
+  .js .count::after{transform:scaleX(1)}
+}
+</style>
+</head>
+<body>
+
+<header class="dark hero">
+<div class="w"><div class="frame"><div class="frame-in">
+
+<div class="seal a" aria-hidden="true"><svg viewBox="0 0 148 148"></svg><div class="seal-c"><b class="num">19</b><span>قالباً</span></div></div>
+<h1 class="a" style="--d:.12s">تحدي الـ <span class="count" id="heroCount">30</span> يوماً للانتشار الفايرال المليوني!</h1>
+<p class="a" style="--d:.24s">خلال 30 يوماً فقط، نضمن لك أن فيديوهاتك ستحقق انتشاراً فيروسياً (Viral Reach) باستخدام هذه القوالب المصممة بدقة. احصل على السر الذي يختصر عليك سنوات من الكورسات والتجارب الفاشلة، وانشر محتواك بثقة مستنداً إلى معادلة مجربة ومُثبتة سابقاً!</p>
+
+<!-- مكان غلاف القوالب: ضع الصورة في images/templates-cover.png وسيختفي المربع المنقّط تلقائياً -->
+<figure class="slot cover-slot a" style="--d:.36s">
+  <img src="images/templates-cover.png" alt="غلاف حزمة الـ 19 قالباً وخريطة الـ 40 مليون مشاهدة" onload="this.closest('.slot').classList.add('is-loaded')">
+  <div class="ph" aria-hidden="true">
+    <strong>مكان غلاف القوالب</strong>
+    <span>يظهر هنا غلاف حزمة الـ 19 قالباً وخريطة الـ 40 مليون مشاهدة</span>
+    <code>images/templates-cover.png</code>
+  </div>
+</figure>
+
+<div class="a" style="--d:.48s">
+  <a class="btn" href="#offer">انضم إلى تحدي الـ 30 يوماً بـ 47$ فقط واقبل التحدي الآن</a>
+  <div class="note">دفعة واحدة، وصول فوري مدى الحياة، بدون اشتراكات</div>
+</div>
+
+</div></div></div>
+</header>
+
+<div class="cred"><div class="w">
+<div><b class="num"><span dir="ltr" data-count="6000" data-prefix="+">+6,000</span></b><span class="l">فيديو تم نشره وتحليله</span></div>
+<div><b class="num"><span dir="ltr" data-count="19">19</span></b><span class="l">قالب سكريبت فايرال</span></div>
+<div><b class="num"><span dir="ltr" data-count="40" data-prefix="+">+40</span> مليون</b><span class="l">مشاهدة وراء خريطة الريلز الهدية</span></div>
+</div></div>
+
+<section>
+<div class="w">
+<h2>لمن هذه القوالب بالتحديد؟</h2>
+<div class="orn"><i></i></div>
+<p class="lead">هذه القوالب مُصممة لك خصيصاً إذا كنت:</p>
+<div class="who">
+<p class="rv">تصنع محتوى بالفعل ولكن فيديوهاتك لا تنتشر وتتوقف المشاهدات عند أرقام محبطة.</p>
+<p class="rv">استمررت لفترة طويلة في نشر الفيديوهات دون أن ترى أي نتائج ملموسة أو نمو في حسابك.</p>
+<p class="rv">تحاول الوصول إلى جمهورك المهتم والشغوف بمجالك لتتحول مشاهداتهم إلى مبيعات وعملاء.</p>
+<p class="rv">تريد أن تختصر على نفسك الجهد، الوقت، والعناء في شراء كورسات جديدة ومشاهدة عشرات الساعات النظريّة.</p>
+<p class="rv">تبحث عن نتيجة مضمونة ومبنية على أرقام ومعادلات مثبتة نجاحها سابقاً بدلاً من تجربة حظك في كل فيديو.</p>
+</div>
+</div>
+</section>
+
+<section class="dark vs">
+<div class="w">
+<h2>لماذا هذا ليس كورساً تعليمياً آخر؟</h2>
+<div class="orn"><i></i></div>
+<p class="lead">إذا كنت تظن أنك بحاجة لمشاهدة 20 ساعة تدريبية أخرى لكي تعرف كيف تصنع محتوى ناجحاً... فأنت تضيع وقتك.</p>
+<div class="vs-grid">
+<div class="vs-c c1 rv"><h3>المشكلة</h3><p>الكورسات تجعلك تقضي أسابيع في الشرح والظنون والتحليل دون أن تنشر فيديو واحداً.</p></div>
+<div class="vs-c c2 rv"><h3>الواقع</h3><p>المحتوى لا يحتاج إلى "نظريات"، بل إلى هيكل سكريبت مُثبت علمياً وعملياً يمسك بانتباه المشاهد من أول ثانية ويجبره على المتابعة واتخاذ إجراء.</p></div>
+<div class="vs-c c3 rv"><h3>الحل</h3><p>مع هذا التحدي، لن تجلس لتتعلم. ستفتح القالب، تملأ الفراغات الخاصة بمجالك، تسجل فوراً، وتنشر!</p></div>
+</div>
+</div>
+</section>
+
+<section class="story">
+<div class="w cols">
+<div>
+<h2>من 6,000 فيديو إلى 19 قالباً</h2>
+<div class="orn"><i></i></div>
+
+<!-- صورة المدرب: ضعها في images/hamdo-aldalal.jpg (يفضّل 600×750 بكسل، وجه واضح في الأعلى) -->
+<figure class="coach">
+  <div class="slot coach-photo">
+    <div class="in">
+      <img src="images/hamdo-aldalal.jpg" alt="المدرب حمدو الدلال" width="600" height="750" loading="lazy" onload="this.closest('.slot').classList.add('is-loaded')">
+      <div class="ph" aria-hidden="true"><b>ح</b><span>صورة المدرب</span></div>
+    </div>
+  </div>
+  <div>
+    <blockquote>لم نبتكر هذه القوالب من فراغ... بل هندسناها عكسياً من واقع 6,000 فيديو!</blockquote>
+    <figcaption><strong>حمدو الدلال</strong><span>المدرب</span></figcaption>
+  </div>
+</figure>
+
+<p>على مدار سنوات، قمت أنا وفريقي بالعمل على نشر أكثر من 6,000 فيديو قصير لي ولعملائي في مختلف القطاعات والمجالات (العقارات، الصحة، الاستشارات، التجارة الإلكترونية، وغيرها).</p>
+<p>وبعد تحليل دقيق للبيانات والأرقام، اكتشفنا حقيقة صادمة:</p>
+<p>قمنا أنا وفريقي بدراسة هذه الـ 3% المستهدفة، واستخرجنا منها الشيفرة الوراثية (DNA) للانتشار: كيف بدأت الفكرة؟ كيف صيغ الخطاف؟ وكيف تم تقديم القيمة ودعوة الجمهور للتفاعل؟</p>
+<p>النتيجة؟ قمنا بتحويل هذه الفيديوهات الاستثنائية إلى قوالب سكريبتات مرنة وسهلة الاستخدام، يستطيع أي شخص في أي مجال تطبيقها فوراً دون أي تعقيد.</p>
+</div>
+
+<div class="big" role="img" aria-label="97% نتائج عادية و3% انتشار مليوني">
+<div><span class="num" style="color:var(--mute)">97%</span><small>من الفيديوهات تعطي نتائج عادية أو مقبولة.</small></div>
+<div class="bar"></div>
+<div><span class="num" style="color:var(--gd)">3%</span><small>فقط من الفيديوهات هي التي اخترقت الخوارزميات وحققت أكثر من مليون مشاهدة وتسببت في نمو المبيعات والمتابعين بشكل انفجاري!</small></div>
+</div>
+</div>
+</section>
+
+<section id="results" style="padding-top:0">
+<div class="w">
+<h2>النتائج المتوقعة بعد الـ 30 يوماً</h2>
+<div class="orn"><i></i></div>
+<p class="lead">عند التزامك بتطبيق قوالب التحدي يومياً، إليك النتيجة الرئيسية والتأثير المباشر على محتواك:</p>
+
+<div class="res-grid" id="resGrid">
+<div class="res">
+<div class="res-i"><div><h3>تحقيق انتشار فيروسي (Viral Reach) لفيديوهاتك خلال هذا الـ 30 يوماً</h3><p>هذا هو التحدي والهدف الأساسي؛ أن تكسر حاجز المشاهدات الضعيفة وتصل فيديوهاتك للآلاف والملايين.</p></div></div>
+<div class="res-i"><div><h3>كسر عقدة الصفحة البيضاء</h3><p>لن تتساءل بعد اليوم "ماذا أسجل اليوم؟"، فالسكريبت والخطاف جاهزان أمامك.</p></div></div>
+<div class="res-i"><div><h3>وصول مباشر للجمهور المهتم</h3><p>السكريبتات مصممة لجذب العميل المناسب المهتم بمجالك وليس مجرد مشاهدات عشوائية.</p></div></div>
+<div class="res-i"><div><h3>تسريع إنتاج المحتوى بنسبة 80%</h3><p>ستسجل الفيديو في دقائق معدودة بدلاً من قضاء ساعات في التفكير والكتابة.</p></div></div>
+<div class="res-i"><div><h3>بناء عادة النشر المستمر والاحترافي</h3><p>الخروج من دائرة التردد للتواجد القوي والمستمر أمام جمهورك.</p></div></div>
+</div>
+
+<aside class="track" id="track" aria-hidden="true">
+  <div class="track-head"><span class="l">اليوم</span><b class="num" id="tDay">1</b><span class="of">من 30</span></div>
+  <ol class="days" id="days"></ol>
+  <div class="fol">
+    <div class="fol-l">نمو المتابعين <small>(مثال توضيحي)</small></div>
+    <div class="fol-n"><b class="num" id="fNum" dir="ltr">0</b><span class="u">متابع</span><div class="bubs" id="bubs"></div></div>
+    <svg class="spark" viewBox="0 0 300 70" aria-hidden="true">
+      <defs><linearGradient id="sg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C9A45C" stop-opacity=".4"/><stop offset="1" stop-color="#C9A45C" stop-opacity="0"/></linearGradient></defs>
+      <line x1="6" y1="64" x2="294" y2="64" stroke="rgba(201,164,92,.3)" stroke-width="1"/>
+      <path id="spA" fill="url(#sg)"/>
+      <path id="spL" fill="none" stroke="#C9A45C" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle id="spD" r="4.5" cx="6" cy="64" fill="#FAF8F3" stroke="#C9A45C" stroke-width="2"/>
+    </svg>
+  </div>
+  <div class="t-foot" id="tFoot">يوماً بعد يوم</div>
+</aside>
+</div>
+</div>
+</section>
+
+<section class="dark offer" id="offer">
+<div class="w">
+<h2>ماذا ستحصل فور انضمامك للتحدي اليوم؟</h2>
+<div class="orn"><i></i></div>
+<div class="box rv"><div class="in">
+<ul>
+<li><b>المجموع الأساسي: 19 قالب سكريبت فايرال</b> مُصممة هندسياً وتكتيكياً بحسب الهدف من الفيديو (سواء للانتشار، زيادة التفاعل، أو تحويل المتابعين إلى عملاء ومبيعات).</li>
+<li><b>البونص والهدية الاستثنائية: خريطة الريلز التجريبي للوصول إلى 40 مليون مشاهدة</b> — دليل عملي يرسم لك خارطة الطريق كاملة التي استخدمناها لتحقيق أكثر من 40 مليون مشاهدة.</li>
+</ul>
+<div class="inv">الاستثمار المطلوب للانضمام للتحدي</div>
+<div class="was">القيمة الإجمالية للعرض: $197</div>
+<div class="price-l">سعر التحدي الخاص اليوم</div>
+<div class="price"><span class="num now" dir="ltr" data-count="47" data-prefix="$">$47</span><span class="only">فقط!</span></div>
+<div class="sub">دفعة واحدة فقط مع وصول فوري مدى الحياة</div>
+<a class="btn" href="#">اضغط هنا واحصل على العرض الكامل بـ 47$ فقط الآن</a>
+</div></div>
+</div>
+</section>
+
+<section>
+<div class="w" style="max-width:860px">
+<h2>أسئلة شائعة</h2>
+<div class="orn"><i></i></div>
+<details><summary>هل سعر الـ 47$ يتضمن جميع الـ 19 قالب والبونص المجاني؟</summary><p>نعم! مقابل 47$ فقط تحصل على وصول فوري لجميع القوالب الـ 19 + خريطة الريلز التجريبي للوصول إلى 40 مليون مشاهدة بدون أي تكاليف خفية أو اشتراكات شهرية.</p></details>
+<details><summary>هل هذه القوالب تناسب مجالي خصيصاً؟</summary><p>نعم! القوالب مصممة على هيكلية علمية ونفسية للجمهور (Hook - Story - Offer)، وهي قابلة للتطبيق في أي مجال سواء كنت طبيباً، مهندساً، مدرباً، عقارياً، أو صاحب متجر.</p></details>
+<details><summary>ليس لدي خبرة في الكتابة أو التحدث أمام الكاميرا، هل أستطيع الاستفادة منها؟</summary><p>هذا هو السبب الرئيسي لإنشاء القوالب! أنت لا تحتاج للابتكار؛ القالب يوجهك كلمة بكلمة وما عليك سوى وضع خبرتك ومجالك داخل الفراغات المحددة.</p></details>
+<details><summary>هل أحتاج للبدء فوراً؟</summary><p>بمجرد الشراء، ستحصل على وصول فوري لجميع الـ 19 قالب وجدول الـ 30 يوماً لتسير على خطة التحدي بالسرعة التي تناسبك.</p></details>
+</div>
+</section>
+
+<section class="dark final">
+<div class="w">
+<div class="orn"><i></i></div>
+<h2>ابدأ تحدي الـ 30 يوماً اليوم</h2>
+<a class="btn" href="#">ابدأ تحدي الـ 30 يوماً بـ 47$ فقط واحصل على الـ 19 قالب والهدية المجانية الآن</a>
+</div>
+</section>
+
+<script>
+(()=>{
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const ease=t=>1-Math.pow(1-t,3);
+const fmt=n=>n.toLocaleString('en-US');
+const $=(s,r=document)=>r.querySelector(s);
+
+/* ===== إعدادات المتابعين (مثال توضيحي) ===== */
+const F_START=1200;   // عدد المتابعين عند اليوم 0
+const F_END=38000;    // عدد المتابعين عند اليوم 30
+const F_CURVE=3.6;    // قوة الانحناء: كلما زاد الرقم كان الانفجار في الأيام الأخيرة أشد
+
+/* صور محمّلة مسبقاً من الكاش */
+document.querySelectorAll('.slot img').forEach(i=>{if(i.complete&&i.naturalWidth)i.closest('.slot').classList.add('is-loaded')});
+
+/* ===== الهيرو: عدّاد الـ 30 + حلقة العلامات ===== */
+const seal=$('.seal'),svg=$('.seal svg'),hc=$('#heroCount'),NS='http://www.w3.org/2000/svg',ticks=[];
+for(let i=0;i<30;i++){
+  const a=(i*12-90)*Math.PI/180,l=document.createElementNS(NS,'line');
+  l.setAttribute('x1',(74+Math.cos(a)*62).toFixed(2));l.setAttribute('y1',(74+Math.sin(a)*62).toFixed(2));
+  l.setAttribute('x2',(74+Math.cos(a)*70).toFixed(2));l.setAttribute('y2',(74+Math.sin(a)*70).toFixed(2));
+  l.setAttribute('class','tk'+(RM?' on':''));svg.appendChild(l);ticks.push(l);
+}
+if(RM){hc.classList.add('done');seal.classList.add('done')}
+else{
+  hc.textContent='0';
+  setTimeout(()=>{
+    const D=2200,t0=performance.now();
+    (function f(now){
+      const t=Math.min(1,(now-t0)/D),v=Math.round(ease(t)*30);
+      hc.textContent=v;ticks.forEach((k,i)=>k.classList.toggle('on',i<v));
+      if(t<1)requestAnimationFrame(f);else{hc.classList.add('done');seal.classList.add('done')}
+    })(t0);
+  },600);
+}
+
+/* ===== ظهور العناصر + عدّادات الأرقام ===== */
+document.querySelectorAll('.rv').forEach(el=>{
+  const sib=[...el.parentElement.children].filter(c=>c.classList.contains('rv'));
+  el.style.setProperty('--d',Math.min(sib.indexOf(el),4)*90+'ms');
+});
+function count(el){
+  const to=+el.dataset.count,p=el.dataset.prefix||'',s=el.dataset.suffix||'',D=1700,t0=performance.now();
+  (function f(now){
+    const t=Math.min(1,(now-t0)/D);
+    el.textContent=p+fmt(Math.round(ease(t)*to))+s;
+    if(t<1)requestAnimationFrame(f);
+  })(t0);
+}
+const counters=[...document.querySelectorAll('[data-count]')];
+if(!RM&&'IntersectionObserver' in window){
+  counters.forEach(el=>{el.textContent=(el.dataset.prefix||'')+'0'+(el.dataset.suffix||'')});
+}
+if('IntersectionObserver' in window){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{
+    if(!e.isIntersecting)return;
+    io.unobserve(e.target);
+    if(e.target.dataset.count!==undefined){if(!RM)count(e.target)}else e.target.classList.add('in');
+  }),{threshold:.25,rootMargin:'0px 0px -6% 0px'});
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+  counters.forEach(el=>io.observe(el));
+}else{
+  document.querySelectorAll('.rv').forEach(el=>el.classList.add('in'));
+}
+
+/* ===== متتبّع الـ 30 يوماً: الأيام + المتابعون ينمون مع التمرير ===== */
+const grid=$('#resGrid'),track=$('#track'),dl=$('#days'),dayEl=$('#tDay'),foot=$('#tFoot');
+const fNum=$('#fNum'),bubs=$('#bubs'),spA=$('#spA'),spL=$('#spL'),spD=$('#spD');
+for(let i=1;i<=30;i++){const li=document.createElement('li');li.textContent=i;dl.appendChild(li)}
+const cells=[...dl.children],items=[...grid.querySelectorAll('.res-i')];
+
+/* منحنى النمو: بطيء في البداية ثم انفجار (شكل عصا الهوكي) */
+const curve=t=>(Math.exp(F_CURVE*t)-1)/(Math.exp(F_CURVE)-1);
+const fol=t=>F_START+(F_END-F_START)*curve(t);
+const SX=t=>6+288*t, SY=t=>64-52*curve(t);
+
+let lastDay=-1,bubDay=1,bubT=0;
+function bubble(gain){
+  if(RM)return;
+  const b=document.createElement('span');
+  b.className='bub';b.textContent='+'+fmt(Math.round(gain));
+  b.style.setProperty('--x',(Math.random()*70-35).toFixed(0)+'px');
+  bubs.appendChild(b);
+  b.addEventListener('animationend',()=>b.remove());
+}
+function render(p){
+  const dv=p*30,day=Math.max(1,Math.round(dv));
+  fNum.textContent=fmt(Math.round(fol(p)));
+
+  /* منحنى المتابعين يُرسم حتى النقطة الحالية */
+  let d='M'+SX(0).toFixed(1)+' '+SY(0).toFixed(1);
+  for(let i=1;i<=Math.floor(dv);i++)d+=' L'+SX(i/30).toFixed(1)+' '+SY(i/30).toFixed(1);
+  const ex=SX(p),ey=SY(p);
+  d+=' L'+ex.toFixed(1)+' '+ey.toFixed(1);
+  spL.setAttribute('d',d);
+  spA.setAttribute('d',d+' L'+ex.toFixed(1)+' 64 L6 64 Z');
+  spD.setAttribute('cx',ex.toFixed(1));spD.setAttribute('cy',ey.toFixed(1));
+
+  if(day!==lastDay){
+    cells.forEach((c,i)=>{c.classList.toggle('on',i<day);c.classList.toggle('cur',i===day-1&&day<30)});
+    dayEl.textContent=day;
+    track.classList.toggle('done',day===30);
+    foot.textContent=day===30?'اكتمل التحدي':'يوماً بعد يوم';
+    lastDay=day;
+  }
+  /* فقاعة "+N" عند كل يوم جديد */
+  const now=performance.now();
+  if(day<bubDay)bubDay=day;
+  else if(day>bubDay&&now-bubT>120){
+    bubble(fol(day/30)-fol(bubDay/30));
+    bubDay=day;bubT=now;
+  }
+  items.forEach((it,i)=>it.classList.toggle('on',p>=i/5-.05));
+}
+
+/* تنعيم الحركة: القيمة المعروضة تلحق بموضع التمرير */
+let target=RM?1:0,cur=target,run=false;
+function frame(){
+  cur+=(target-cur)*.14;
+  if(Math.abs(target-cur)<.0004){cur=target;run=false}
+  render(cur);
+  if(run)requestAnimationFrame(frame);
+}
+function measure(){
+  if(RM)return;
+  const r=grid.getBoundingClientRect(),vh=innerHeight,range=r.height-vh*.1;
+  target=Math.min(1,Math.max(0,(vh*.65-r.top)/range));
+  if(!run){run=true;requestAnimationFrame(frame)}
+}
+addEventListener('scroll',measure,{passive:true});
+addEventListener('resize',measure);
+render(cur);
+measure();
+})();
+</script>
+</body>
+</html>
