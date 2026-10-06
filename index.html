@@ -58,6 +58,16 @@ a:focus-visible,summary:focus-visible{outline:3px solid var(--gold);outline-offs
 .seal .num{font-size:46px}
 .seal span{font-size:15px;line-height:1.5}
 .seal.done .seal-c{animation:pop .7s var(--ease)}
+.seal{cursor:pointer}
+/* عدّاد دوّار (odometer) لرقم 19 */
+.odo{display:inline-flex;height:1em;overflow:hidden;line-height:1;direction:ltr}
+.odo .c{display:flex;flex-direction:column;font-style:normal;transform:translateY(calc(var(--v,0) * -1em))}
+.odo i{display:block;height:1em;line-height:1;font-style:normal;text-align:center}
+/* 19 شعاعاً تنطلق حول الختم بالتتابع */
+.burst{position:absolute;inset:0;pointer-events:none}
+.burst i{position:absolute;left:50%;top:50%;width:3px;height:14px;margin:-7px 0 0 -1.5px;border-radius:2px;background:var(--gold);opacity:0;animation:ray .95s ease-out var(--dl,0s) both}
+/* لمعة تعبر كلمة "قالباً" */
+.seal span.shine{background:linear-gradient(110deg,var(--gold) 40%,#F1ECDD 50%,var(--gold) 60%);background-size:260% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shim 1.3s ease-out}
 
 /* مكان غلاف القوالب */
 .slot{position:relative}
@@ -140,7 +150,7 @@ html:not(.js) .res-grid{grid-template-columns:1fr}
 .days li:last-child{border-width:2px;border-color:var(--gold)}
 .track.done .days li:last-child{animation:pop .8s var(--ease)}
 
-/* نمو المتابعين: رقم يتصاعد + منحنى ينمو + فقاعات */
+/* نمو المشاهدات: رقم يتصاعد + منحنى ينمو + فقاعات */
 .fol{margin-top:20px;padding-top:16px;border-top:1px solid rgba(201,164,92,.35);text-align:center}
 .fol-l{font-size:15px;color:#CFC9B5;line-height:1.5}
 .fol-l small{font-size:13px;color:#A9A38E}
@@ -192,6 +202,8 @@ details p{margin:0 0 26px;padding-inline:4px;color:var(--mute);max-width:720px}
 @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 @keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.12)}100%{transform:scale(1)}}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes ray{0%{opacity:0;transform:rotate(var(--a)) translateY(-74px) scaleY(.4)}25%{opacity:1}100%{opacity:0;transform:rotate(var(--a)) translateY(-116px) scaleY(1.15)}}
+@keyframes shim{from{background-position:100% 50%}to{background-position:0% 50%}}
 @keyframes bub{0%{opacity:0;transform:translate(-50%,8px)}18%{opacity:1}100%{opacity:0;transform:translate(-50%,-54px)}}
 @keyframes beat{0%,100%{r:4.5}50%{r:7.5}}
 .js .rv{opacity:0}
@@ -217,26 +229,99 @@ details p{margin:0 0 26px;padding-inline:4px;color:var(--mute);max-width:720px}
   .coach{gap:18px}.coach-photo{width:112px}.coach blockquote{font-size:21px}
   .res-grid{gap:20px}
   .res-i h3{font-size:25px}
-  .track{order:-1;top:8px;z-index:5;padding:12px 16px 14px;outline:0;display:grid;grid-template-columns:auto 1fr;grid-template-areas:"head fol" "days days";align-items:center;column-gap:14px}
-  .track-head{grid-area:head}.track-head .num{font-size:44px}.track-head .l,.track-head .of{font-size:15px}
-  .fol{grid-area:fol;margin:0;padding:0;border:0;justify-self:end}
-  .fol-l,.spark,.bubs,.t-foot{display:none}
-  .fol-n{margin:0}.fol-n .num{font-size:30px}.fol-n .u{font-size:14px}
-  .days{grid-area:days;grid-template-columns:repeat(30,1fr);gap:2px;margin-top:8px}
-  .days li{aspect-ratio:auto;height:12px;font-size:0;border-width:0;background:rgba(201,164,92,.22)}
-  .days li.on{background:var(--gold)}
-  .days li.cur{transform:scaleY(1.7);box-shadow:none;background:var(--paper)}
+  .track{order:-1;top:8px;z-index:5;padding:14px 14px 12px;outline-offset:-6px;display:grid;grid-template-columns:auto 1fr;grid-template-areas:"days head" "days fol";column-gap:14px;align-items:center}
+  .days{grid-area:days;grid-template-columns:repeat(6,28px);grid-auto-rows:28px;gap:3px;margin:0;align-self:center}
+  .days li{aspect-ratio:auto;font-size:11px}
+  .track-head{grid-area:head;flex-direction:column;align-items:center;gap:2px;align-self:end}
+  .track-head .num{font-size:40px;min-width:0}.track-head .l,.track-head .of{font-size:13px}
+  .fol{grid-area:fol;margin:8px 0 0;padding-top:8px;align-self:start}
+  .fol-l{font-size:12px}.fol-l small{display:block;font-size:11px}
+  .fol-n{flex-direction:column;align-items:center;gap:0}.fol-n .num{font-size:28px;line-height:1.2}.fol-n .u{font-size:12px}
+  .bub{font-size:12px}
+  .spark{margin-top:2px}
+  .t-foot{display:none}
   .offer .in{padding:40px 22px}.now{font-size:84px}.final h2{font-size:38px}
   summary{font-size:22px}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .btn,.btn::after,.days li,summary::after{transition:none}
-  .hero .a,.js .rv.in,.cover-slot img,.seal.done .seal-c,.track.done .days li:last-child,.track.done .spark #spD{animation:none}
+  .hero .a,.js .rv.in,.cover-slot img,.seal.done .seal-c,.burst i,.seal span.shine,.track.done .days li:last-child,.track.done .spark #spD{animation:none}
   .js .rv{opacity:1}
   .js .res-i{opacity:1}
   .js .count::after{transform:scaleX(1)}
 }
+
+
+
+  /* ========== قسم الريلات المتحركة ========== */
+  .showcase{
+    --sc-w:clamp(84px,11vw,132px);   /* عرض الريل: غيّره للتكبير أو التصغير */
+    --sc-gap:clamp(.6rem,1.4vw,.9rem);
+    padding:44px 0;
+    
+    border-block:1px solid var(--gold,#C9A45C);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    gap:var(--sc-gap);
+  }
+  /* القسم الذي يليه كان بدون مسافة علوية، نعيدها هنا */
+  .showcase + section{padding-top:104px !important}
+
+  .sc-row{
+    position:relative;
+    overflow:hidden;
+    direction:ltr;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 7%,#000 93%,transparent 100%);
+            mask-image:linear-gradient(90deg,transparent 0%,#000 7%,#000 93%,transparent 100%);
+  }
+  .sc-track{
+    display:flex;
+    width:max-content;
+    will-change:transform;
+    animation:sc-move var(--sc-speed,40s) linear infinite;
+  }
+  .sc-row--right .sc-track{animation-direction:reverse}
+
+  /* المسافة بين الريلات هامش (وليس gap) حتى تكون الحلقة بلا أي قفزة */
+  .sc-card{
+    position:relative;
+    flex:0 0 auto;
+    width:var(--sc-w);
+    aspect-ratio:9/16;
+    margin-right:var(--sc-gap);
+    overflow:hidden;
+    border-radius:4px;
+    background:var(--g2,#16382F);
+    border:1px solid rgba(201,164,92,.35);
+  }
+  .sc-card img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  @keyframes sc-move{
+    from{transform:translateX(0)}
+    to{transform:translateX(-50%)}
+  }
+
+  /* إيقاف مؤقت عند التحويم أو اللمس */
+  .sc-row:hover .sc-track,
+  .sc-row.is-paused .sc-track{animation-play-state:paused}
+
+  @media (max-width:860px){
+    .showcase{padding:32px 0}
+    .showcase + section{padding-top:68px !important}
+    .sc-card{border-radius:3px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .sc-track{animation:none}
+  }
 </style>
 </head>
 <body>
@@ -244,7 +329,7 @@ details p{margin:0 0 26px;padding-inline:4px;color:var(--mute);max-width:720px}
 <header class="dark hero">
 <div class="w"><div class="frame"><div class="frame-in">
 
-<div class="seal a" aria-hidden="true"><svg viewBox="0 0 148 148"></svg><div class="seal-c"><b class="num">19</b><span>قالباً</span></div></div>
+<div class="seal a" aria-hidden="true"><svg viewBox="0 0 148 148"></svg><div class="seal-c"><b class="num" id="n19">19</b><span>قالباً</span></div><div class="burst" id="burst"></div></div>
 <h1 class="a" style="--d:.12s">تحدي الـ <span class="count" id="heroCount">30</span> يوماً للانتشار الفايرال المليوني!</h1>
 <p class="a" style="--d:.24s">خلال 30 يوماً فقط، نضمن لك أن فيديوهاتك ستحقق انتشاراً فيروسياً (Viral Reach) باستخدام هذه القوالب المصممة بدقة. احصل على السر الذي يختصر عليك سنوات من الكورسات والتجارب الفاشلة، وانشر محتواك بثقة مستنداً إلى معادلة مجربة ومُثبتة سابقاً!</p>
 
@@ -334,6 +419,57 @@ details p{margin:0 0 26px;padding-inline:4px;color:var(--mute);max-width:720px}
 </div>
 </section>
 
+
+<!-- ==========================================================
+     قسم الريلات المتحركة (Marquee)
+     ضعه بعد إغلاق قسم القصة </section> وقبل <section id="results">
+     ========================================================== -->
+<section class="showcase" aria-hidden="true">
+
+  <!-- الصف 1: يتحرك يساراً -->
+  <div class="sc-row sc-row--left" data-sc-row style="--sc-speed:40s">
+    <div class="sc-track">
+      <article class="sc-card"><img src="img/1.png" alt="" loading="lazy"></article>
+      <article class="sc-card"><img src="img/2.png" alt="" loading="lazy"></article>
+      <article class="sc-card"><img src="img/3.png" alt="" loading="lazy"></article>
+      <article class="sc-card"><img src="img/4.png" alt="" loading="lazy"></article>
+      <article class="sc-card"><img src="img/5.png" alt="" loading="lazy"></article>
+      <article class="sc-card"><img src="img/6.png" alt="" loading="lazy"></article>
+      <article class="sc-card"><img src="img/7.png" alt="" loading="lazy"></article>
+    </div>
+  </div>
+
+  <!-- الصف 2: يتحرك يميناً -->
+  <div class="sc-row sc-row--right" data-sc-row style="--sc-speed:46s">
+    <div class="sc-track">
+      <article class="sc-card"><img src="img/8.png" alt="" loading="lazy"></article>
+      <article class="sc-card"><img src="img/9.png" alt="" loading="lazy"></article>
+      <article class="sc-card"><img src="img/10.png" alt="" loading="lazy"></article>
+      <article class="sc-card"><img src="img/11.png" alt="" loading="lazy"></article>
+      <article class="sc-card"><img src="img/12.png" alt="" loading="lazy"></article>
+      <article class="sc-card"><img src="img/13.png" alt="" loading="lazy"></article>
+      <article class="sc-card"><img src="img/14.png" alt="" loading="lazy"></article>
+    </div>
+  </div>
+
+  <!-- الصف 3: يتحرك يساراً -->
+  <div class="sc-row sc-row--left" data-sc-row style="--sc-speed:42s">
+    <div class="sc-track">
+      <article class="sc-card"><img src="img/15.png" alt="" loading="lazy"></article>
+      <article class="sc-card"><img src="img/16.png" alt="" loading="lazy"></article>
+      <article class="sc-card"><img src="img/17.png" alt="" loading="lazy"></article>
+      <article class="sc-card"><img src="img/18.png" alt="" loading="lazy"></article>
+      <article class="sc-card"><img src="img/19.png" alt="" loading="lazy"></article>
+      <article class="sc-card"><img src="img/20.png" alt="" loading="lazy"></article>
+    </div>
+  </div>
+
+</section>
+
+
+
+
+
 <section id="results" style="padding-top:0">
 <div class="w">
 <h2>النتائج المتوقعة بعد الـ 30 يوماً</h2>
@@ -353,8 +489,8 @@ details p{margin:0 0 26px;padding-inline:4px;color:var(--mute);max-width:720px}
   <div class="track-head"><span class="l">اليوم</span><b class="num" id="tDay">1</b><span class="of">من 30</span></div>
   <ol class="days" id="days"></ol>
   <div class="fol">
-    <div class="fol-l">نمو المتابعين <small>(مثال توضيحي)</small></div>
-    <div class="fol-n"><b class="num" id="fNum" dir="ltr">0</b><span class="u">متابع</span><div class="bubs" id="bubs"></div></div>
+    <div class="fol-l">نمو المشاهدات <small>(مثال توضيحي)</small></div>
+    <div class="fol-n"><b class="num" id="fNum" dir="ltr">0</b><span class="u">مشاهدة</span><div class="bubs" id="bubs"></div></div>
     <svg class="spark" viewBox="0 0 300 70" aria-hidden="true">
       <defs><linearGradient id="sg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C9A45C" stop-opacity=".4"/><stop offset="1" stop-color="#C9A45C" stop-opacity="0"/></linearGradient></defs>
       <line x1="6" y1="64" x2="294" y2="64" stroke="rgba(201,164,92,.3)" stroke-width="1"/>
@@ -414,10 +550,10 @@ const ease=t=>1-Math.pow(1-t,3);
 const fmt=n=>n.toLocaleString('en-US');
 const $=(s,r=document)=>r.querySelector(s);
 
-/* ===== إعدادات المتابعين (مثال توضيحي) ===== */
-const F_START=1200;   // عدد المتابعين عند اليوم 0
-const F_END=38000;    // عدد المتابعين عند اليوم 30
-const F_CURVE=3.6;    // قوة الانحناء: كلما زاد الرقم كان الانفجار في الأيام الأخيرة أشد
+/* ===== إعدادات المشاهدات (مثال توضيحي) ===== */
+const V_START=4000;    // عدد المشاهدات عند اليوم 0
+const V_END=1500000;    // عدد المشاهدات عند اليوم 30
+const V_CURVE=3.6;     // قوة الانحناء: كلما زاد الرقم كان الانفجار في الأيام الأخيرة أشد
 
 /* صور محمّلة مسبقاً من الكاش */
 document.querySelectorAll('.slot img').forEach(i=>{if(i.complete&&i.naturalWidth)i.closest('.slot').classList.add('is-loaded')});
@@ -430,15 +566,52 @@ for(let i=0;i<30;i++){
   l.setAttribute('x2',(74+Math.cos(a)*70).toFixed(2));l.setAttribute('y2',(74+Math.sin(a)*70).toFixed(2));
   l.setAttribute('class','tk'+(RM?' on':''));svg.appendChild(l);ticks.push(l);
 }
+/* رقم 19: عدّاد دوّار + 19 شعاعاً + لمعة على كلمة "قالباً" (يُعاد عند المرور على الختم) */
+const n19=$('#n19'),burst=$('#burst'),sealWord=$('.seal span');
+let oT,oO,playing=false;
+function buildOdo(){
+  n19.classList.add('odo');n19.textContent='';
+  oT=document.createElement('em');oT.className='c';oT.innerHTML='<i>0</i><i>1</i>';
+  oO=document.createElement('em');oO.className='c';oO.innerHTML=[...Array(20).keys()].map(k=>'<i>'+(k%10)+'</i>').join('');
+  n19.append(oT,oO);
+}
+function setOdo(v){
+  oT.style.setProperty('--v',Math.min(1,Math.max(0,v-9)).toFixed(3));
+  oO.style.setProperty('--v',v.toFixed(3));
+}
+function rays(){
+  burst.textContent='';
+  for(let i=0;i<19;i++){
+    const r=document.createElement('i');
+    r.style.setProperty('--a',(i*360/19).toFixed(2)+'deg');
+    r.style.setProperty('--dl',(i*28)+'ms');
+    burst.appendChild(r);
+  }
+  sealWord.classList.remove('shine');void sealWord.offsetWidth;sealWord.classList.add('shine');
+}
+sealWord.addEventListener('animationend',()=>sealWord.classList.remove('shine'));
+function replay(){
+  if(RM||playing)return;
+  playing=true;
+  const D=1300,t0=performance.now();
+  (function f(now){
+    const t=Math.min(1,(now-t0)/D);setOdo(ease(t)*19);
+    if(t<1)requestAnimationFrame(f);else{rays();playing=false}
+  })(t0);
+}
+seal.addEventListener('mouseenter',replay);
+seal.addEventListener('click',replay);
+
 if(RM){hc.classList.add('done');seal.classList.add('done')}
 else{
-  hc.textContent='0';
+  hc.textContent='0';buildOdo();setOdo(0);playing=true;
   setTimeout(()=>{
     const D=2200,t0=performance.now();
     (function f(now){
       const t=Math.min(1,(now-t0)/D),v=Math.round(ease(t)*30);
       hc.textContent=v;ticks.forEach((k,i)=>k.classList.toggle('on',i<v));
-      if(t<1)requestAnimationFrame(f);else{hc.classList.add('done');seal.classList.add('done')}
+      setOdo(ease(t)*19);
+      if(t<1)requestAnimationFrame(f);else{hc.classList.add('done');seal.classList.add('done');rays();playing=false}
     })(t0);
   },600);
 }
@@ -472,15 +645,15 @@ if('IntersectionObserver' in window){
   document.querySelectorAll('.rv').forEach(el=>el.classList.add('in'));
 }
 
-/* ===== متتبّع الـ 30 يوماً: الأيام + المتابعون ينمون مع التمرير ===== */
+/* ===== متتبّع الـ 30 يوماً: الأيام + المشاهدات تنمو مع التمرير ===== */
 const grid=$('#resGrid'),track=$('#track'),dl=$('#days'),dayEl=$('#tDay'),foot=$('#tFoot');
 const fNum=$('#fNum'),bubs=$('#bubs'),spA=$('#spA'),spL=$('#spL'),spD=$('#spD');
 for(let i=1;i<=30;i++){const li=document.createElement('li');li.textContent=i;dl.appendChild(li)}
 const cells=[...dl.children],items=[...grid.querySelectorAll('.res-i')];
 
 /* منحنى النمو: بطيء في البداية ثم انفجار (شكل عصا الهوكي) */
-const curve=t=>(Math.exp(F_CURVE*t)-1)/(Math.exp(F_CURVE)-1);
-const fol=t=>F_START+(F_END-F_START)*curve(t);
+const curve=t=>(Math.exp(V_CURVE*t)-1)/(Math.exp(V_CURVE)-1);
+const fol=t=>V_START+(V_END-V_START)*curve(t);
 const SX=t=>6+288*t, SY=t=>64-52*curve(t);
 
 let lastDay=-1,bubDay=1,bubT=0;
@@ -496,7 +669,7 @@ function render(p){
   const dv=p*30,day=Math.max(1,Math.round(dv));
   fNum.textContent=fmt(Math.round(fol(p)));
 
-  /* منحنى المتابعين يُرسم حتى النقطة الحالية */
+  /* منحنى المشاهدات يُرسم حتى النقطة الحالية */
   let d='M'+SX(0).toFixed(1)+' '+SY(0).toFixed(1);
   for(let i=1;i<=Math.floor(dv);i++)d+=' L'+SX(i/30).toFixed(1)+' '+SY(i/30).toFixed(1);
   const ex=SX(p),ey=SY(p);
@@ -541,6 +714,24 @@ addEventListener('resize',measure);
 render(cur);
 measure();
 })();
+
+
+
+(function () {
+    document.querySelectorAll('[data-sc-row]').forEach(function (row) {
+      var track = row.querySelector('.sc-track');
+
+      // نسخة مكررة من الريلات لحلقة لا نهائية بدون فراغ
+      Array.prototype.slice.call(track.children).forEach(function (card) {
+        track.appendChild(card.cloneNode(true));
+      });
+
+      // الإيقاف عند اللمس على الجوال (بديل :hover)
+      row.addEventListener('touchstart',  function () { row.classList.add('is-paused'); },    { passive: true });
+      row.addEventListener('touchend',    function () { row.classList.remove('is-paused'); }, { passive: true });
+      row.addEventListener('touchcancel', function () { row.classList.remove('is-paused'); }, { passive: true });
+    });
+  })();
 </script>
 </body>
 </html>
