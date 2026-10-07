@@ -71,13 +71,11 @@ a:focus-visible,summary:focus-visible{outline:3px solid var(--gold);outline-offs
 
 /* مكان غلاف القوالب */
 .slot{position:relative}
-.cover-slot{margin:0 auto 40px;width:min(100%,360px);aspect-ratio:var(--cover-ratio)}
-.cover-slot img{display:none;width:100%;height:100%;object-fit:contain;animation:float 6s ease-in-out infinite}
+.cover-slot{margin:0 auto 40px;width:min(100%,420px);}
+.cover-slot img{display:none;width:100%;object-fit:contain;animation:float 6s ease-in-out infinite}
 .slot.is-loaded img{display:block}
 .slot.is-loaded .ph{display:none}
-.cover-slot .ph{position:absolute;inset:0;display:grid;place-content:center;gap:6px;padding:24px;text-align:center;color:#CFC9B5;font-size:16px;line-height:1.7;border:1.5px dashed rgba(201,164,92,.65)}
-.ph strong{font:700 26px/1.4 'Amiri',serif;color:var(--gold)}
-.ph code{direction:ltr;font:500 13px/1.6 ui-monospace,Menlo,monospace;color:#A9A38E}
+
 
 /* دخول الهيرو بتسلسل واحد */
 .hero .a{animation:rise .9s var(--ease) both;animation-delay:var(--d,0s)}
@@ -335,12 +333,7 @@ details p{margin:0 0 26px;padding-inline:4px;color:var(--mute);max-width:720px}
 
 <!-- مكان غلاف القوالب: ضع الصورة في images/templates-cover.PNG وسيختفي المربع المنقّط تلقائياً -->
 <figure class="slot cover-slot a" style="--d:.36s">
-  <img src="images/templates-cover.PNG" alt="غلاف حزمة الـ 19 قالباً وخريطة الـ 40 مليون مشاهدة" onload="this.closest('.slot').classList.add('is-loaded')">
-  <div class="ph" aria-hidden="true">
-    <strong>مكان غلاف القوالب</strong>
-    <span>يظهر هنا غلاف حزمة الـ 19 قالباً وخريطة الـ 40 مليون مشاهدة</span>
-    <code>images/templates-cover.PNG</code>
-  </div>
+  <img src="img/templete.png" alt="غلاف حزمة الـ 19 قالباً وخريطة الـ 40 مليون مشاهدة" onload="this.closest('.slot').classList.add('is-loaded')">
 </figure>
 
 <div class="a" style="--d:.48s">
