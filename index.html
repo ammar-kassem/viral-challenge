@@ -373,9 +373,6 @@ details p{margin:0 0 26px;padding-inline:4px;color:var(--mute);max-width:720px}
 .badge .num{font-size:3.3cqw}
 .badge span{font:500 max(1.6cqw,6px)/1.3 'IBM Plex Sans Arabic',sans-serif;color:#E2C98F}
 
-
-
-  /* ========== نافذة الدفع ========== */
   .pay-modal{
     position:fixed;inset:0;z-index:9999;
     display:grid;place-items:center;padding:20px;
@@ -385,8 +382,6 @@ details p{margin:0 0 26px;padding-inline:4px;color:var(--mute);max-width:720px}
   }
   .pay-modal[hidden]{display:none}
   .pay-modal.is-open{opacity:1}
-  /* أثناء ظهور نافذة تكرام باي نخفي نافذتنا مؤقتاً حتى لا تتداخل معها */
-  .pay-modal.is-away{opacity:0;pointer-events:none;transition:none}
 
   .pay-backdrop{
     position:absolute;inset:0;
@@ -396,9 +391,8 @@ details p{margin:0 0 26px;padding-inline:4px;color:var(--mute);max-width:720px}
 
   .pay-dialog{
     position:relative;
-    width:min(100%,480px);
-    max-height:calc(100vh - 40px);max-height:calc(100dvh - 40px);
-    overflow:auto;
+    width:min(100%,520px);
+    height:min(92vh,760px);height:min(92dvh,760px);
     padding:10px;
     background:var(--g,#0F2A24);
     color:#F1ECDD;
@@ -410,15 +404,23 @@ details p{margin:0 0 26px;padding-inline:4px;color:var(--mute);max-width:720px}
   .pay-modal.is-open .pay-dialog{transform:none}
 
   .pay-frame{
-    position:relative;
-    padding:36px 30px 28px;
-    text-align:center;
+    height:100%;
+    display:flex;flex-direction:column;
+    padding:12px 14px 10px;
     border:1px solid rgba(201,164,92,.45);
   }
 
+  .pay-head{
+    flex:none;
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    padding-bottom:12px;margin-bottom:12px;
+    border-bottom:1px solid rgba(201,164,92,.3);
+  }
+  .pay-head-t{display:flex;align-items:center;gap:10px;color:var(--gold,#C9A45C);font-weight:600;font-size:16px;line-height:1.5}
+
   .pay-x{
-    position:absolute;top:10px;left:10px;
-    width:36px;height:36px;
+    flex:none;
+    width:34px;height:34px;
     display:grid;place-items:center;
     background:transparent;color:var(--gold,#C9A45C);
     border:1px solid rgba(201,164,92,.5);
@@ -427,87 +429,54 @@ details p{margin:0 0 26px;padding-inline:4px;color:var(--mute);max-width:720px}
     transition:background .2s,color .2s;
   }
   .pay-x:hover{background:var(--gold,#C9A45C);color:var(--g,#0F2A24)}
-  .pay-x:focus-visible,.pay-go:focus-visible{outline:3px solid var(--gold,#C9A45C);outline-offset:3px}
+  .pay-x:focus-visible,.pay-foot a:focus-visible{outline:3px solid var(--gold,#C9A45C);outline-offset:3px}
 
-  .pay-orn{display:flex;align-items:center;gap:14px;max-width:180px;margin:0 auto 14px;color:var(--gold,#C9A45C)}
-  .pay-orn::before,.pay-orn::after{content:"";flex:1;height:1px;background:currentColor}
-  .pay-orn i{width:8px;height:8px;background:currentColor;rotate:45deg}
-
-  .pay-title{
-    margin:0 0 20px;
-    font:700 34px/1.4 'Amiri','Traditional Arabic',serif;
-    color:#F1ECDD;
+  /* منطقة عرض صفحة الدفع */
+  .pay-stage{
+    position:relative;
+    flex:1;min-height:0;
+    background:var(--g2,#16382F);
+    border:1px solid rgba(201,164,92,.3);
+    overflow:hidden;
   }
-
-  .pay-items{list-style:none;margin:0 0 22px;padding:0;text-align:right}
-  .pay-items li{
-    display:flex;gap:14px;
-    padding:12px 0;
-    border-bottom:1px solid rgba(201,164,92,.3);
-    font-size:16.5px;line-height:1.8;color:#CFC9B5;
+  .pay-iframe{
+    position:absolute;inset:0;
+    width:100%;height:100%;
+    border:0;background:#fff;
+    opacity:0;transition:opacity .4s ease;
   }
-  .pay-items li::before{content:"";flex:none;width:8px;height:8px;margin-top:11px;background:var(--gold,#C9A45C);rotate:45deg}
-  .pay-items b{color:var(--gold,#C9A45C);font-weight:600}
+  .pay-stage.is-loaded .pay-iframe{opacity:1}
 
-  .pay-was{color:#A9A38E;text-decoration:line-through;font-size:16px}
-  .pay-label{margin-top:6px;color:#F1ECDD;font-size:16px}
-  .pay-price{display:flex;align-items:baseline;justify-content:center;gap:12px;line-height:1.1}
-  .pay-amount{font:700 76px/1.1 'Amiri',serif;color:var(--gold,#C9A45C)}
-  .pay-price em{font:700 26px/1 'Amiri',serif;font-style:normal;color:var(--gold,#C9A45C)}
-  .pay-sub{margin:4px 0 24px;color:#CFC9B5;font-size:15.5px}
-
-  /* زر الدفع: نفس زر الموقع الذهبي مع لمعة عند المرور */
-  .pay-go{
-    position:relative;overflow:hidden;
-    width:100%;min-height:58px;
-    display:flex;align-items:center;justify-content:center;gap:10px;
-    padding:12px 20px;
-    background:var(--gold,#C9A45C);color:var(--g,#0F2A24);
-    border:1px solid var(--gold,#C9A45C);
-    font:600 18px/1.5 'IBM Plex Sans Arabic',sans-serif;
-    text-align:center;text-decoration:none;cursor:pointer;
-    transition:transform .25s cubic-bezier(.2,.7,.2,1),opacity .2s;
+  .pay-loader{
+    position:absolute;inset:0;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;
+    color:#CFC9B5;font-size:15px;
+    transition:opacity .3s;
   }
-  .pay-go::after{
-    content:"";position:absolute;inset:0;
-    background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.55) 50%,transparent 65%);
-    transform:translateX(130%);
-    transition:transform .8s cubic-bezier(.2,.7,.2,1);
+  .pay-loader i{
+    width:44px;height:44px;border-radius:50%;
+    border:2px solid rgba(201,164,92,.25);border-top-color:var(--gold,#C9A45C);
+    animation:pay-spin .9s linear infinite;
   }
-  .pay-go:hover{transform:translateY(-3px)}
-  .pay-go:hover::after{transform:translateX(-130%)}
-  .pay-go:active{transform:none}
-  .pay-go[disabled]{opacity:.7;cursor:progress;transform:none}
+  .pay-stage.is-loaded .pay-loader{opacity:0;pointer-events:none}
+  @keyframes pay-spin{to{transform:rotate(360deg)}}
 
-  .pay-err{margin:14px 0 0;color:#EBA999;font-size:15px;line-height:1.7}
-  .pay-note{margin:16px 0 0;color:#A9A38E;font-size:14px}
+  .pay-foot{flex:none;margin:10px 0 0;text-align:center;color:#A9A38E;font-size:13.5px;line-height:1.6}
+  .pay-foot a{color:var(--gold,#C9A45C);text-decoration:underline;text-underline-offset:3px}
 
-  /* حالة النجاح */
-  .pay-done .pay-title{margin-top:14px}
-  .pay-check{display:block;margin:0 auto;color:var(--gold,#C9A45C)}
-  .pay-check circle{stroke-dasharray:252;stroke-dashoffset:252;animation:pay-draw .8s .1s cubic-bezier(.2,.7,.2,1) forwards}
-  .pay-check path{stroke-dasharray:60;stroke-dashoffset:60;animation:pay-draw .5s .7s cubic-bezier(.2,.7,.2,1) forwards}
-  @keyframes pay-draw{to{stroke-dashoffset:0}}
-  .pay-order{margin:0 0 24px;color:#CFC9B5}
-  .pay-order b{color:var(--gold,#C9A45C);font-weight:600}
-
-  /* الجوال: تنزلق النافذة من الأسفل */
+  /* الجوال: تنزلق النافذة من الأسفل وتأخذ أغلب الشاشة */
   @media (max-width:560px){
     .pay-modal{place-items:end center;padding:0}
-    .pay-dialog{width:100%;max-height:94vh;max-height:94dvh;border-inline:0;border-bottom:0;transform:translateY(40px)}
-    .pay-frame{padding:34px 20px 24px}
-    .pay-title{font-size:30px}
-    .pay-amount{font-size:64px}
+    .pay-dialog{width:100%;height:94vh;height:94dvh;border-inline:0;border-bottom:0;transform:translateY(40px)}
+    .pay-frame{padding:10px 10px 8px}
   }
   @media (prefers-reduced-motion:reduce){
-    .pay-modal,.pay-dialog,.pay-go,.pay-go::after{transition:none}
-    .pay-check circle,.pay-check path{animation:none;stroke-dashoffset:0}
+    .pay-modal,.pay-dialog,.pay-iframe{transition:none}
+    .pay-loader i{animation-duration:2.4s}
   }
 </style>
 </head>
 <body>
-
-
 
 
 
@@ -518,48 +487,26 @@ details p{margin:0 0 26px;padding-inline:4px;color:var(--mute);max-width:720px}
   <div class="pay-dialog" role="dialog" aria-modal="true" aria-labelledby="payTitle" tabindex="-1">
     <div class="pay-frame">
 
-      <button type="button" class="pay-x" data-pay-close aria-label="إغلاق">&times;</button>
-
-      <!-- العرض الأول: ملخص الطلب -->
-      <div class="pay-view" id="payViewCheckout">
-        <div class="pay-orn" aria-hidden="true"><i></i></div>
-        <h2 class="pay-title" id="payTitle">إتمام الانضمام للتحدي</h2>
-
-        <ul class="pay-items">
-          <li><b>19 قالب سكريبت فايرال</b></li>
-          <li><b>هدية:</b> خريطة الريلز التجريبي للوصول إلى 40 مليون مشاهدة</li>
-        </ul>
-
-        <div class="pay-total">
-          <div class="pay-was">القيمة الإجمالية للعرض: $197</div>
-          <div class="pay-label">سعر التحدي الخاص اليوم</div>
-          <div class="pay-price"><span class="pay-amount" dir="ltr">$47</span><em>فقط!</em></div>
-          <div class="pay-sub">دفعة واحدة فقط مع وصول فوري مدى الحياة</div>
+      <header class="pay-head">
+        <div class="pay-head-t">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10.5" width="16" height="10" rx="1.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg>
+          <span id="payTitle">دفع مشفر و آمن  </span>
         </div>
+        <button type="button" class="pay-x" data-pay-close aria-label="إغلاق">&times;</button>
+      </header>
 
-        <button type="button" class="pay-go" id="payGo">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10.5" width="16" height="10" rx="1.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg>
-          <span>دفع مشفر و آمن</span>
-        </button>
-
-        <p class="pay-err" id="payErr" role="alert" hidden></p>
-        <p class="pay-note">بدون أي تكاليف خفية أو اشتراكات شهرية</p>
+      <div class="pay-stage" id="payStage">
+        <div class="pay-loader" aria-hidden="true"><i></i><span>جارٍ تحميل صفحة الدفع…</span></div>
+        <iframe id="payFrame" class="pay-iframe" title="صفحة الدفع" allow="payment *; clipboard-write" referrerpolicy="strict-origin-when-cross-origin"></iframe>
       </div>
 
-      <!-- العرض الثاني: تم الدفع بنجاح -->
-      <div class="pay-view pay-done" id="payViewDone" hidden>
-        <svg class="pay-check" viewBox="0 0 88 88" width="88" height="88" fill="none" aria-hidden="true">
-          <circle cx="44" cy="44" r="40" stroke="currentColor" stroke-width="2.5"/>
-          <path d="M27 45.5l11.5 11.5L62 32" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <h2 class="pay-title">تم الدفع بنجاح!</h2>
-        <p class="pay-order">رقم الطلب: <b dir="ltr" id="payOrderId"></b></p>
-        <a class="pay-go" id="payNext" href="/thank-you">متابعة</a>
-      </div>
+      <p class="pay-foot">لا تظهر صفحة الدفع؟ <a id="payExternal" href="#" target="_blank" rel="noopener">افتحها في نافذة جديدة</a></p>
 
     </div>
   </div>
 </div>
+
+
 
 
 <header class="dark hero">
@@ -967,33 +914,27 @@ measure();
     });
   })();
 
-  (function () {
-    /* ========== الإعدادات: عدّلها هنا فقط ========== */
+
+
+ (function () {
+    /* ========== الإعدادات ========== */
     var CONFIG = {
-      AMOUNT: 47,                                                  // سعر التحدي بالدولار
-      SELLER: "5463c5f4-438a-4a75-9cc6-e08bd81502b4",              // معرّف البائع في تكرام باي
-      DESC: "تحدي الـ 30 يوماً: 19 قالب سكريبت فايرال + خريطة الريلز",
-      WEBHOOK_URL: "https://your-domain.com/api/webhooks/tekram",  // غيّره إلى رابط الويب هوك الحقيقي
-      THANK_YOU_URL: "/thank-you",                                 // صفحة الشكر (اتركه "" لإلغاء التحويل)
-      REDIRECT_DELAY: 3500                                         // مدة الانتظار قبل التحويل بالمللي ثانية
+      CHECKOUT_URL: "https://www.tekrams.com/checkout?id=4f2d81db-eb91-4730-afcc-7957370e3982"
     };
 
     var modal    = document.getElementById('payModal');
     var dialog   = modal.querySelector('.pay-dialog');
-    var viewPay  = document.getElementById('payViewCheckout');
-    var viewDone = document.getElementById('payViewDone');
-    var goBtn    = document.getElementById('payGo');
-    var errBox   = document.getElementById('payErr');
-    var orderEl  = document.getElementById('payOrderId');
-    var nextBtn  = document.getElementById('payNext');
+    var stage    = document.getElementById('payStage');
+    var frame    = document.getElementById('payFrame');
+    var external = document.getElementById('payExternal');
     var lastFocus = null;
 
-    // عرض السعر من الإعدادات ليبقى مصدره واحداً
-    modal.querySelector('.pay-amount').textContent = '$' + CONFIG.AMOUNT;
-    nextBtn.setAttribute('href', CONFIG.THANK_YOU_URL || '#');
+    external.setAttribute('href', CONFIG.CHECKOUT_URL);
 
-    function showError(msg) { errBox.textContent = msg; errBox.hidden = false; }
-    function clearError()   { errBox.hidden = true; errBox.textContent = ''; }
+    // تظهر صفحة الدفع بعد اكتمال تحميلها (نتجاهل تحميل الإطار الفارغ الأول)
+    frame.addEventListener('load', function () {
+      if (frame.getAttribute('src')) stage.classList.add('is-loaded');
+    });
 
     function lockScroll(on) {
       var root = document.documentElement;
@@ -1009,11 +950,11 @@ measure();
 
     function openModal(trigger) {
       lastFocus = trigger || document.activeElement;
-      viewDone.hidden = true;
-      viewPay.hidden = false;
-      clearError();
-      goBtn.disabled = false;
-      modal.classList.remove('is-away');
+      // نحمّل صفحة الدفع عند أول ضغطة فقط، ثم تبقى محفوظة إن أغلق العميل النافذة وفتحها
+      if (!frame.getAttribute('src')) {
+        stage.classList.remove('is-loaded');
+        frame.setAttribute('src', CONFIG.CHECKOUT_URL);
+      }
       modal.hidden = false;
       void modal.offsetWidth;            // لتفعيل حركة الظهور
       modal.classList.add('is-open');
@@ -1022,53 +963,10 @@ measure();
     }
 
     function closeModal() {
-      modal.classList.remove('is-open', 'is-away');
+      modal.classList.remove('is-open');
       lockScroll(false);
       setTimeout(function () { modal.hidden = true; }, 260);
       if (lastFocus && lastFocus.focus) lastFocus.focus();
-    }
-
-    function newOrderId() {
-      return 'ORD-' + Date.now().toString(36).toUpperCase() + Math.random().toString(36).slice(2, 6).toUpperCase();
-    }
-
-    function showSuccess(order) {
-      modal.classList.remove('is-away');
-      viewPay.hidden = true;
-      viewDone.hidden = false;
-      orderEl.textContent = (order && order.id) || 'مكتمل';
-      nextBtn.focus();
-      if (CONFIG.THANK_YOU_URL) {
-        setTimeout(function () { window.location.href = CONFIG.THANK_YOU_URL; }, CONFIG.REDIRECT_DELAY);
-      }
-    }
-
-    function pay() {
-      clearError();
-      if (!window.TekramPay || typeof window.TekramPay.checkout !== 'function') {
-        showError('تعذّر تحميل بوابة الدفع. حدّث الصفحة وحاول مرة أخرى.');
-        return;
-      }
-      goBtn.disabled = true;
-      modal.classList.add('is-away');    // نخفي نافذتنا لتظهر نافذة تكرام باي بوضوح
-      try {
-        window.TekramPay.checkout({
-          amount: CONFIG.AMOUNT,
-          seller: CONFIG.SELLER,
-          desc: CONFIG.DESC,
-          merchant_order_id: newOrderId(),
-          webhook_url: CONFIG.WEBHOOK_URL,
-          onSuccess: showSuccess,
-          onCancel: function () {        // أغلق العميل نافذة الدفع: نعيد نافذتنا
-            goBtn.disabled = false;
-            modal.classList.remove('is-away');
-          }
-        });
-      } catch (e) {
-        goBtn.disabled = false;
-        modal.classList.remove('is-away');
-        showError('حدث خطأ أثناء فتح نافذة الدفع. حاول مرة أخرى.');
-      }
     }
 
     // أي عنصر عليه data-buy (أو رابطه #checkout) يفتح النافذة
@@ -1078,14 +976,12 @@ measure();
       if (e.target.closest('[data-pay-close]')) closeModal();
     });
 
-    goBtn.addEventListener('click', pay);
-
     document.addEventListener('keydown', function (e) {
-      if (modal.hidden || modal.classList.contains('is-away')) return;
+      if (modal.hidden) return;
       if (e.key === 'Escape') { closeModal(); return; }
       if (e.key === 'Tab') {             // إبقاء التنقل بالكيبورد داخل النافذة
         var f = Array.prototype.filter.call(
-          dialog.querySelectorAll('button:not([disabled]), a[href]'),
+          dialog.querySelectorAll('button, a[href]'),
           function (el) { return el.offsetParent !== null; }
         );
         if (!f.length) return;
