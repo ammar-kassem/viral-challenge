@@ -115,16 +115,91 @@ a:focus-visible,summary:focus-visible{outline:3px solid var(--gold);outline-offs
 .story h2{text-align:right}
 .story .orn{margin:20px 0 32px;margin-inline-end:auto}
 .story p{margin:0 0 18px}
-.coach{display:flex;align-items:center;gap:28px;margin:0 0 32px}
-.coach-photo{flex:none;width:156px;aspect-ratio:4/5;padding:6px;border:1px solid var(--gold);border-radius:999px 999px 6px 6px}
-.coach-photo .in{position:absolute;inset:6px;overflow:hidden;border-radius:999px 999px 3px 3px;background:var(--g)}
-.coach-photo img{display:none;width:100%;height:100%;object-fit:cover;object-position:center top}
-.coach-photo .ph{position:absolute;inset:0;display:grid;place-content:center;gap:4px;text-align:center;color:var(--gold);font-size:13px;line-height:1.5;padding:10px}
-.coach-photo .ph b{font:700 54px/1 'Amiri',serif}
-.coach blockquote{margin:0 0 10px;font:700 26px/1.65 'Amiri',serif;color:var(--g)}
-.coach figcaption{display:flex;flex-direction:column;line-height:1.6}
-.coach figcaption strong{font-weight:600;color:var(--gd);font-size:18px}
-.coach figcaption span{color:var(--mute);font-size:15px}
+
+
+/* ==========================================================
+   صورة المدرب: بطاقة خضراء بإطار ذهبي مزدوج + شريط الاسم
+   احذف كل قواعد .coach القديمة (الأساسية وقاعدة الجوال) ثم الصق هذا الكود مكانها
+   ========================================================== */
+.coach{display:flex;align-items:center;gap:36px;margin:0 0 36px}
+
+/* البطاقة */
+.coach-card{
+  position:relative;flex:none;width:260px;
+  padding:18px 18px 14px;
+  background:var(--g);color:#F1ECDD;text-align:center;
+  border:1px solid var(--gold);
+}
+.coach-card::before{          /* الخط الذهبي الداخلي (نفس إطار الهيرو والعرض) */
+  content:"";position:absolute;inset:7px;
+  border:1px solid rgba(201,164,92,.45);
+  pointer-events:none;
+}
+
+/* الصورة */
+.coach-pic{
+  position:relative;aspect-ratio:4/5;overflow:hidden;
+  background:var(--g2);
+  border:1px solid var(--gold);
+}
+.coach-pic img{
+  display:block;width:100%;height:100%;
+  object-fit:cover;object-position:center top;
+  filter:contrast(1.04) saturate(.95);
+  transition:transform .9s var(--ease);
+}
+.coach-card:hover .coach-pic img{transform:scale(1.04)}
+
+/* دخول الصورة: ستارة خضراء تنزاح من الأعلى مع تكبير هادئ */
+.js .coach-pic img{transform:scale(1.1)}
+.js .coach-pic::after{
+  content:"";position:absolute;inset:0;z-index:1;
+  background:var(--g);transform-origin:top;
+}
+.js .coach-pic.is-loaded::after{transform:scaleY(0);transition:transform 1.1s .15s var(--ease)}
+.js .coach-pic.is-loaded img{transform:none;transition:transform 1.6s var(--ease)}
+.js .coach-card:hover .coach-pic.is-loaded img{transform:scale(1.04);transition:transform .9s var(--ease)}
+
+/* شريط الاسم تحت الصورة */
+.coach-plate{
+  display:flex;flex-direction:column;align-items:center;
+  padding:16px 6px 6px;line-height:1.5;
+}
+.coach-orn{
+  display:flex;align-items:center;gap:8px;width:96px;margin-bottom:10px;
+  color:var(--gold);
+  animation:coach-orn 1s .5s var(--ease) both;
+}
+.coach-orn::before,.coach-orn::after{content:"";flex:1;height:1px;background:currentColor}
+.coach-orn i{width:7px;height:7px;background:currentColor;rotate:45deg}
+.coach-plate strong{font:700 28px/1.3 'Amiri','Traditional Arabic',serif;color:#F1ECDD}
+.coach-role{font-size:15px;color:var(--gold)}
+@keyframes coach-orn{from{opacity:0;transform:scaleX(0)}to{opacity:1;transform:none}}
+
+/* الاقتباس */
+.coach-quote{
+  position:relative;margin:0;padding-top:24px;
+  font:700 30px/1.7 'Amiri','Traditional Arabic',serif;color:var(--g);
+}
+.coach-quote::before{
+  content:"";position:absolute;top:0;inset-inline-start:0;
+  width:56px;height:3px;background:var(--gold);
+}
+
+/* الجوال: البطاقة في الوسط والاقتباس تحتها */
+@media (max-width:860px){
+  .coach{flex-direction:column;align-items:center;gap:28px;text-align:center}
+  .coach-card{width:min(100%,290px)}
+  .coach-quote{font-size:24px;padding-top:22px}
+  .coach-quote::before{inset-inline-start:50%;translate:50% 0}
+}
+@media (prefers-reduced-motion:reduce){
+  .coach-pic img,.js .coach-pic.is-loaded img,.js .coach-pic.is-loaded::after{transition:none}
+  .js .coach-pic img{transform:none}
+  .js .coach-pic::after{display:none}
+  .coach-orn{animation:none}
+}
+
 .big{display:flex;flex-direction:column;gap:20px}
 .big .num{font-size:96px;line-height:1}
 .bar{height:14px;background:var(--line);position:relative;margin-top:8px}
@@ -568,19 +643,22 @@ details p{margin:0 0 26px;padding-inline:4px;color:var(--mute);max-width:720px}
 <div>
 <h2>من 6,000 فيديو إلى 19 قالباً</h2>
 <div class="orn"><i></i></div>
-
-<!-- صورة المدرب: ضعها في images/hamdo-aldalal.jpg (يفضّل 600×750 بكسل، وجه واضح في الأعلى) -->
+<!-- صورة المدرب: ضعها في img/hamdo.jpg (يفضّل 600×750 بكسل، وجه واضح في النصف الأعلى) -->
 <figure class="coach">
-  <div class="slot coach-photo">
-    <div class="in">
-      <img src="images/hamdo-aldalal.jpg" alt="المدرب حمدو الدلال" width="600" height="750" loading="lazy" onload="this.closest('.slot').classList.add('is-loaded')">
-      <div class="ph" aria-hidden="true"><b>ح</b><span>صورة المدرب</span></div>
+
+  <div class="coach-card">
+    <div class="slot coach-pic">
+      <img src="img/hamdo.jpg" alt="المدرب حمدو الدلال" width="600" height="750" loading="lazy" onload="this.closest('.slot').classList.add('is-loaded')">
+    </div>
+    <div class="coach-plate">
+      <span class="coach-orn" aria-hidden="true"><i></i></span>
+      <strong>حمدو الدلال</strong>
+      <span class="coach-role">المدرب</span>
     </div>
   </div>
-  <div>
-    <blockquote>لم نبتكر هذه القوالب من فراغ... بل هندسناها عكسياً من واقع 6,000 فيديو!</blockquote>
-    <figcaption><strong>حمدو الدلال</strong><span>المدرب</span></figcaption>
-  </div>
+
+  <blockquote class="coach-quote">لم نبتكر هذه القوالب من فراغ... بل هندسناها عكسياً من واقع 6,000 فيديو!</blockquote>
+
 </figure>
 
 <p>على مدار سنوات، قمت أنا وفريقي بالعمل على نشر أكثر من 6,000 فيديو قصير لي ولعملائي في مختلف القطاعات والمجالات (العقارات، الصحة، الاستشارات، التجارة الإلكترونية، وغيرها).</p>
