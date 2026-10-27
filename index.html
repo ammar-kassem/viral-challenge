@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>تحدي الـ 30 يوماً للانتشار الفايرال المليوني</title>
-<meta name="description" content="19 قالب سكريبت فايرال وخريطة الريلز للوصول إلى 40 مليون مشاهدة بـ 47$ فقط.">
+<title>تحدّي 30 يوماً لصناعة ريلز أقوى باستخدام قوالب سكريبتات جاهزة</title>
+<meta name="description" content="مكتبة تضم 19 قالب سكريبت ريلز جاهزة: هياكل وأفكار وأمثلة تساعدك على كتابة سكريبتاتك وتطبيقها على مجالك.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
@@ -549,6 +549,66 @@ details p{margin:0 0 26px;padding-inline:4px;color:var(--mute);max-width:720px}
     .pay-modal,.pay-dialog,.pay-iframe{transition:none}
     .pay-loader i{animation-duration:2.4s}
   }
+
+/* ===== وضوح المنتج: أقسام وخطوات جديدة ===== */
+.hero .lede{font-size:18px;color:#CFC9B5;max-width:640px;margin:0 auto 8px}
+.hero .hero-h2{font-size:46px;max-width:820px;margin:6px auto 18px;color:#F1ECDD}
+.hero .hero-desc{font-size:17px;color:#CFC9B5;max-width:680px;margin:0 auto 14px}
+.hero .hero-clar{font-size:16px;color:#F1ECDD;max-width:620px;margin:0 auto 28px;padding-top:14px;border-top:1px solid rgba(201,164,92,.35)}
+.cred-note{max-width:760px;margin:0 auto;padding:0 24px 30px;text-align:center;color:var(--mute);font-size:14.5px;line-height:1.8}
+
+.prose{max-width:780px;margin:0 auto 44px}
+.prose p{margin:0 0 18px;font-size:19px}
+.prose p:first-child{font:700 28px/1.7 'Amiri','Traditional Arabic',serif;color:var(--g)}
+.prose.dk p{color:#CFC9B5}.prose.dk p:first-child{color:#F1ECDD}
+.prose b{color:var(--gd)}
+.sub-h{font-size:30px;text-align:center;margin:0 0 22px;color:var(--gd)}
+.sub-h.gold{color:var(--gold)}
+.who.dk p{border-bottom-color:rgba(201,164,92,.3);color:#E3DCC6}
+
+.ben{list-style:none;counter-reset:b;max-width:780px;margin:0 auto;padding:0}
+.ben li{counter-increment:b;display:flex;align-items:center;gap:20px;padding:18px 0;border-bottom:1px solid var(--line);font-size:18.5px}
+.ben li::before{content:counter(b);flex:none;width:46px;height:46px;display:grid;place-items:center;border:1px solid var(--gold);font:700 26px/1 'Amiri',serif;color:var(--gd)}
+
+.offer .get-p{margin:0 0 14px;color:#CFC9B5;font-size:18px;text-align:right}
+.offer .get-lab{margin:26px 0 6px;text-align:right;font:700 30px/1.4 'Amiri',serif;color:var(--gold)}
+
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:22px;position:relative}
+.steps::before{content:"";position:absolute;top:38px;inset-inline:12.5%;height:1px;background:var(--gold);opacity:.6;transform-origin:right;transition:transform 1.5s .3s var(--ease)}
+.js .steps::before{transform:scaleX(0)}
+.js .steps.in::before{transform:scaleX(1)}
+.step{position:relative;text-align:center}
+.step-ic{position:relative;z-index:1;width:76px;height:76px;margin:0 auto 18px;display:grid;place-items:center;border:1px solid var(--gold);border-radius:50%;background:var(--paper);color:var(--gd)}
+.step-n{position:absolute;top:-6px;inset-inline-end:-6px;width:30px;height:30px;display:grid;place-items:center;border-radius:50%;background:var(--g);color:var(--gold);border:1px solid var(--gold);font:700 18px/1 'Amiri',serif}
+.step h3{font-size:24px;margin-bottom:8px;color:var(--g)}
+.step p{margin:0;font-size:15.5px;line-height:1.85;color:var(--mute)}
+.flow{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 14px;margin:48px auto 0;max-width:860px}
+.flow span{padding:8px 18px;border:1px solid var(--gold);color:var(--g);font-weight:500;font-size:16px}
+.flow i{font-style:normal;color:var(--gd);font-size:20px}
+
+.res-i .ch-p{margin:0;font-size:20px;color:var(--ink)}
+.track:has(.fol[hidden]) .track-head{align-self:center}
+
+.final .final-p{max-width:680px;margin:0 auto 24px;color:#CFC9B5;font-size:19px}
+.final .price{margin-bottom:22px}
+
+@media (max-width:860px){
+  .hero .hero-h2{font-size:30px}
+  .hero .lede{font-size:16.5px}
+  .prose p{font-size:17.5px}.prose p:first-child{font-size:23px}
+  .sub-h{font-size:25px}
+  .steps{grid-template-columns:1fr;gap:26px}
+  .steps::before{top:38px;bottom:38px;inset-inline:auto;inset-inline-start:37px;width:1px;height:auto;transform-origin:top}
+  .js .steps::before{transform:scaleY(0)}
+  .js .steps.in::before{transform:scaleY(1)}
+  .step{display:grid;grid-template-columns:76px 1fr;gap:18px;text-align:right;align-items:start}
+  .step-ic{margin:0}
+  .step h3{font-size:21px}
+  .flow{margin-top:36px}.flow span{font-size:14.5px;padding:6px 12px}
+  .ben li{font-size:17px;gap:14px}.ben li::before{width:40px;height:40px;font-size:22px}
+  .offer .get-lab{font-size:25px}
+  .res-i .ch-p{font-size:18px}
+}
 </style>
 </head>
 <body>
@@ -588,56 +648,47 @@ details p{margin:0 0 26px;padding-inline:4px;color:var(--mute);max-width:720px}
 <div class="w"><div class="frame"><div class="frame-in">
 
 <div class="seal a" aria-hidden="true"><svg viewBox="0 0 148 148"></svg><div class="seal-c"><b class="num" id="n19">19</b><span>قالباً</span></div><div class="burst" id="burst"></div></div>
-<h1 class="a" style="--d:.12s">تحدي الـ <span class="count" id="heroCount">30</span> يوماً للانتشار الفايرال المليوني!</h1>
-<p class="a" style="--d:.24s">خلال 30 يوماً فقط، نضمن لك أن فيديوهاتك ستحقق انتشاراً فيروسياً (Viral Reach) باستخدام هذه القوالب المصممة بدقة.</p>
-<!-- مكان غلاف القوالب: ضع الصورة في images/templates-cover.PNG وسيختفي المربع المنقّط تلقائياً -->
+<h1 class="a" style="--d:.12s">قوالب سكريبتات ريلز جاهزة</h1>
+<p class="a lede" style="--d:.2s">سكريبتات ريلز قابلة للتطبيق، تساعدك على تحويل أفكارك إلى فيديوهات تناسب مجالك وجمهورك.</p>
+<p class="a lede" style="--d:.26s">قوالب ريلز تساعدك على كتابة سكريبتات تجذب انتباه المشاهد وتدفعه لمتابعة الفيديو.</p>
+
 <figure class="slot cover-slot a" style="--d:.36s">
-  <div class="cv"><div class="cover" role="img" aria-label="غلاف حزمة القوالب"><i class="bg phbg"></i><i class="ov"></i><i class="glow"></i><div class="cv-tag">حزمة قوالب الفيديو الفايرال</div><div class="cv-t">19 قالباً جاهزاً للانتشار</div><div class="pages"><i class="pg p-o i1"></i><i class="pg p-m i2"></i><div class="pg p-c"><b class="num">19</b><span>قالب فيديو جاهز لتنفيذ الفوري</span><u></u></div><i class="pg p-m i3"></i><i class="pg p-o i4"></i></div><div class="seala" aria-hidden="true"><span>هدية</span><b class="num">40M</b><span>مشاهدة</span></div><div class="cv-s">من الفكرة إلى المليون مشاهدة</div></div></div>
+  <div class="cv"><div class="cover" role="img" aria-label="غلاف مكتبة قوالب سكريبتات الريلز"><i class="bg phbg"></i><i class="ov"></i><i class="glow"></i><div class="cv-tag">مكتبة قوالب سكريبتات الريلز</div><div class="cv-t">19 قالب سكريبت جاهز</div><div class="pages"><i class="pg p-o i1"></i><i class="pg p-m i2"></i><div class="pg p-c"><b class="num">19</b><span>قالب سكريبت جاهز للتطبيق</span><u></u></div><i class="pg p-m i3"></i><i class="pg p-o i4"></i></div><div class="seala" aria-hidden="true"><span>مبنية من</span><b class="num" style="font-size:3.4cqw">6,000+</b><span>فيديو</span></div><div class="cv-s">من الهيكل إلى الفيديو</div></div></div>
 </figure>
 
+<h2 class="a hero-h2" style="--d:.4s">تحدّي <span class="count" id="heroCount">30</span> يوماً لصناعة ريلز أقوى باستخدام قوالب سكريبتات جاهزة</h2>
+<p class="a hero-desc" style="--d:.44s">احصل على مكتبة تضم 19 قالب سكريبت، تساعدك على بناء فيديوهاتك، وكتابة الخطافات، وترتيب أفكارك بطريقة واضحة، بدلاً من إضاعة الوقت في التفكير من الصفر كل يوم.</p>
+<p class="a hero-clar" style="--d:.48s">هذه ليست قوالب تصميم، بل هياكل سكريبتات يمكنك تطبيقها على تخصصك وأفكارك وخبرتك لصناعة محتوى يناسب جمهورك.</p>
 
-<p class="a" style="--d:.24s">احصل على السر الذي يختصر عليك سنوات من الكورسات والتجارب الفاشلة، وانشر محتواك بثقة مستنداً إلى معادلة مجربة ومُثبتة سابقاً!
-
-</p>
-
-<div class="a" style="--d:.48s">
-  <a class="btn" data-buy href="#offer">انضم إلى تحدي الـ 30 يوماً بـ 47$ فقط واقبل التحدي الآن</a>
-  <div class="note">دفعة واحدة، وصول فوري مدى الحياة، بدون اشتراكات</div>
+<div class="a" style="--d:.52s">
+  <a class="btn" data-buy href="#">احصل على القوالب الـ19 مقابل $47</a>
+  <div class="note">وصول رقمي إلى مكتبة السكريبتات. ابدأ باستخدام القوالب وطبّقها على مجالك.</div>
 </div>
-
 </div></div></div>
 </header>
 
 <div class="cred"><div class="w">
-<div><b class="num"><span dir="ltr" data-count="6000" data-prefix="+">+6,000</span></b><span class="l">فيديو تم نشره وتحليله</span></div>
-<div><b class="num"><span dir="ltr" data-count="19">19</span></b><span class="l">قالب سكريبت فايرال</span></div>
-<div><b class="num"><span dir="ltr" data-count="40" data-prefix="+">+40</span> مليون</b><span class="l">مشاهدة وراء خريطة الريلز الهدية</span></div>
-</div></div>
+<div><b class="num"><span dir="ltr" data-count="19">19</span></b><span class="l">قالب سكريبت داخل المكتبة</span></div>
+<div><b class="num"><span dir="ltr" data-count="6000" data-prefix="+">+6,000</span></b><span class="l">فيديو نشره حمدو وفريقه، ومنها استُخلصت الهياكل</span></div>
+<div><b class="num"><span dir="ltr" data-count="40" data-prefix="+">+40</span> مليون</b><span class="l">مشاهدة حققتها فيديوهات حمدو وفريقه</span></div>
+</div>
+<p class="cred-note">هذه الأرقام توضّح خبرة حمدو وفريقه في بناء السكريبتات، ولا تعني أن شراء القوالب يضمن لك النتائج نفسها.</p>
+</div>
 
-<section>
+<section class="what" id="what">
 <div class="w">
-<h2>لمن هذه القوالب بالتحديد؟</h2>
+<h2>ما هي قوالب سكريبتات الريلز؟</h2>
 <div class="orn"><i></i></div>
-<p class="lead">هذه القوالب مُصممة لك خصيصاً إذا كنت:</p>
+<div class="prose rv">
+<p>قوالب سكريبتات الريلز هي هياكل جاهزة تساعدك على بناء فيديوهاتك بطريقة منظمة، بدل ما تضيع وقتك كل يوم في التفكير من الصفر.</p>
+<p>بدل ما تحتار كيف تبدأ الفيديو، أو كيف ترتب أفكارك، أو كيف تعرض موضوعك بطريقة تجذب انتباه المشاهد، تختار قالباً من مكتبة السكريبتات، وتقرأ الهيكل والأمثلة الموجودة فيه، ثم تطبّقه على تخصصك وجمهورك.</p>
+<p>الفكرة ليست أن تنسخ كلاماً لا يشبهك، بل أن تستخدم هيكلاً واضحاً يساعدك على تحويل خبرتك وأفكارك إلى سكريبت تستطيع تصويره وتحويله إلى فيديو.</p>
+</div>
 <div class="who">
-<p class="rv">تصنع محتوى بالفعل ولكن فيديوهاتك لا تنتشر وتتوقف المشاهدات عند أرقام محبطة.</p>
-<p class="rv">استمررت لفترة طويلة في نشر الفيديوهات دون أن ترى أي نتائج ملموسة أو نمو في حسابك.</p>
-<p class="rv">تحاول الوصول إلى جمهورك المهتم والشغوف بمجالك لتتحول مشاهداتهم إلى مبيعات وعملاء.</p>
-<p class="rv">تريد أن تختصر على نفسك الجهد، الوقت، والعناء في شراء كورسات جديدة ومشاهدة عشرات الساعات النظريّة.</p>
-<p class="rv">تبحث عن نتيجة مضمونة ومبنية على أرقام ومعادلات مثبتة نجاحها سابقاً بدلاً من تجربة حظك في كل فيديو.</p>
-</div>
-</div>
-</section>
-
-<section class="dark vs">
-<div class="w">
-<h2>لماذا هذا ليس كورساً تعليمياً آخر؟</h2>
-<div class="orn"><i></i></div>
-<p class="lead">إذا كنت تظن أنك بحاجة لمشاهدة 20 ساعة تدريبية أخرى لكي تعرف كيف تصنع محتوى ناجحاً... فأنت تضيع وقتك.</p>
-<div class="vs-grid">
-<div class="vs-c c1 rv"><h3>المشكلة</h3><p>الكورسات تجعلك تقضي أسابيع في الشرح والظنون والتحليل دون أن تنشر فيديو واحداً.</p></div>
-<div class="vs-c c2 rv"><h3>الواقع</h3><p>المحتوى لا يحتاج إلى "نظريات"، بل إلى هيكل سكريبت مُثبت علمياً وعملياً يمسك بانتباه المشاهد من أول ثانية ويجبره على المتابعة واتخاذ إجراء.</p></div>
-<div class="vs-c c3 rv"><h3>الحل</h3><p>مع هذا التحدي، لن تجلس لتتعلم. ستفتح القالب، تملأ الفراغات الخاصة بمجالك، تسجل فوراً، وتنشر!</p></div>
+<p class="rv">هياكل سكريبتات جاهزة لتبدأ منها.</p>
+<p class="rv">أمثلة تساعدك على فهم طريقة تطبيق كل هيكل.</p>
+<p class="rv">إمكانية تكييف القوالب مع مجالك وخبرتك.</p>
+<p class="rv">طريقة منظمة لتحويل الأفكار إلى فيديوهات قابلة للتصوير.</p>
 </div>
 </div>
 </section>
@@ -645,7 +696,7 @@ details p{margin:0 0 26px;padding-inline:4px;color:var(--mute);max-width:720px}
 <section class="story">
 <div class="w cols">
 <div>
-<h2>من 6,000 فيديو إلى 19 قالباً</h2>
+<h2>من 6,000 فيديو إلى 19 قالب سكريبت</h2>
 <div class="orn"><i></i></div>
 <!-- صورة المدرب: ضعها في img/hamdo.jpg (يفضّل 600×750 بكسل، وجه واضح في النصف الأعلى) -->
 <figure class="coach">
@@ -666,24 +717,19 @@ details p{margin:0 0 26px;padding-inline:4px;color:var(--mute);max-width:720px}
 </figure>
 
 <p>على مدار سنوات، قمت أنا وفريقي بالعمل على نشر أكثر من 6,000 فيديو قصير لي ولعملائي في مختلف القطاعات والمجالات (العقارات، الصحة، الاستشارات، التجارة الإلكترونية، وغيرها).</p>
-<p>وبعد تحليل دقيق للبيانات والأرقام، اكتشفنا حقيقة صادمة:</p>
-<p>قمنا أنا وفريقي بدراسة هذه الـ 3% المستهدفة، واستخرجنا منها الشيفرة الوراثية (DNA) للانتشار: كيف بدأت الفكرة؟ كيف صيغ الخطاف؟ وكيف تم تقديم القيمة ودعوة الجمهور للتفاعل؟</p>
-<p>النتيجة؟ قمنا بتحويل هذه الفيديوهات الاستثنائية إلى قوالب سكريبتات مرنة وسهلة الاستخدام، يستطيع أي شخص في أي مجال تطبيقها فوراً دون أي تعقيد.</p>
+<p>وبعد مراجعة الأرقام، لاحظنا أن قلة من الفيديوهات فقط هي التي تجاوزت مليون مشاهدة:</p>
+<p>درسنا هذه الفيديوهات وراجعنا كيف بدأت الفكرة، وكيف صيغ الخطاف، وكيف قُدّمت القيمة ودُعي الجمهور للتفاعل.</p>
+<p>ثم حوّلنا هذه الأنماط إلى هياكل سكريبتات مرنة تستطيع تطبيقها على مجالك. وهذه الأرقام توضّح خبرتنا في بناء السكريبتات، ولا تعني أن استخدام القوالب يضمن لك النتائج نفسها.</p>
 </div>
 
-<div class="big" role="img" aria-label="97% نتائج عادية و3% انتشار مليوني">
-<div><span class="num" style="color:var(--mute)">97%</span><small>من الفيديوهات تعطي نتائج عادية أو مقبولة.</small></div>
+<div class="big" role="img" aria-label="97% نتائج عادية و3% تجاوزت مليون مشاهدة">
+<div><span class="num" style="color:var(--mute)">97%</span><small>من الفيديوهات حققت نتائج عادية أو مقبولة.</small></div>
 <div class="bar"></div>
-<div><span class="num" style="color:var(--gd)">3%</span><small>فقط من الفيديوهات هي التي اخترقت الخوارزميات وحققت أكثر من مليون مشاهدة وتسببت في نمو المبيعات والمتابعين بشكل انفجاري!</small></div>
+<div><span class="num" style="color:var(--gd)">3%</span><small>فقط من الفيديوهات تجاوزت مليون مشاهدة.</small></div>
 </div>
 </div>
 </section>
 
-
-<!-- ==========================================================
-     قسم الريلات المتحركة (Marquee)
-     ضعه بعد إغلاق قسم القصة </section> وقبل <section id="results">
-     ========================================================== -->
 <section class="showcase" aria-hidden="true">
 
   <!-- الصف 1: يتحرك يساراً -->
@@ -727,6 +773,63 @@ details p{margin:0 0 26px;padding-inline:4px;color:var(--mute);max-width:720px}
 
 </section>
 
+<section class="why" id="why">
+<div class="w">
+<h2>بدل ما تبدأ من الصفر في كل فيديو</h2>
+<div class="orn"><i></i></div>
+<div class="prose rv">
+<p>إذا كنت مدرباً أو خبيراً أو صانع محتوى، فأنت تعرف أن امتلاك الخبرة شيء، وتحويل هذه الخبرة إلى فيديو يجذب اهتمام الجمهور شيء آخر.</p>
+<p>قد تكون لديك معلومات قيّمة وأفكار كثيرة، لكنك لا تعرف دائماً كيف تبدأ الفيديو، أو كيف ترتب المعلومات، أو كيف تقدّم الفكرة بطريقة تجعل المشاهد يرغب في متابعة المحتوى.</p>
+<p><b>هنا يأتي دور مكتبة السكريبتات.</b></p>
+<p>بدل ما تبدأ من صفحة فارغة في كل مرة، يمكنك اختيار هيكل جاهز، وفهم طريقة استخدامه من خلال الأمثلة، ثم تطبيقه على موضوع من تخصصك.</p>
+</div>
+<h3 class="sub-h">الفوائد الرئيسية</h3>
+<ol class="ben">
+<li class="rv">اختصر وقت التفكير في طريقة كتابة السكريبت.</li>
+<li class="rv">تعلّم طرقاً مختلفة لتقديم أفكارك.</li>
+<li class="rv">حوّل خبرتك إلى محتوى واضح وقابل للتصوير.</li>
+<li class="rv">استخدم هياكل تساعدك على تنظيم بداية الفيديو وتسلسل الأفكار.</li>
+<li class="rv">أنشئ محتوى يناسب تخصصك وجمهورك بدل الاعتماد على النسخ العشوائي.</li>
+</ol>
+</div>
+</section>
+
+<section class="dark offer" id="offer">
+<div class="w">
+<h2>ماذا ستحصل عليه عند شراء الباقة؟</h2>
+<div class="orn"><i></i></div>
+<div class="box rv"><div class="in">
+<p class="get-p">عند شرائك الباقة، ستحصل على مكتبة تضم 19 قالب سكريبت، تحتوي على هياكل وأفكار وأمثلة تساعدك على بناء فيديوهات الريلز الخاصة بك.</p>
+<p class="get-p">لن تحتاج إلى البدء من الصفر في كل مرة؛ يمكنك الدخول إلى المكتبة، والبدء من أول هيكل وأول فكرة مطروحة، ثم قراءة الأمثلة وتطبيق الهيكل على مجالك.</p>
+<div class="get-lab">محتويات الباقة</div>
+<ul>
+<li>مكتبة تضم 19 قالب سكريبت.</li>
+<li>هياكل جاهزة تساعدك على بناء الفيديو.</li>
+<li>أفكار مطروحة داخل المكتبة لتبدأ منها.</li>
+<li>أمثلة تساعدك على فهم طريقة تطبيق الهياكل.</li>
+<li>إمكانية تكييف القوالب مع تخصصك وجمهورك.</li>
+</ul>
+<a class="btn" data-buy href="#">احصل على القوالب الـ19 مقابل $47</a>
+</div></div>
+</div>
+</section>
+
+<section class="how" id="how">
+<div class="w">
+<h2>كيف تستخدم مكتبة السكريبتات وتحوّل القوالب إلى فيديوهات؟</h2>
+<div class="orn"><i></i></div>
+<ol class="steps rv">
+<li class="step rv"><div class="step-ic"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><b class="step-n">1</b></div><div class="step-t"><h3>ابدأ بأول هيكل وأول فكرة داخل المكتبة</h3><p>ادخل إلى مكتبة السكريبتات، وابدأ بأول هيكل وأول فكرة مطروحة داخل المكتبة. لا تحتاج إلى إضاعة الوقت في البحث عن فكرة من الصفر؛ ابدأ من الهيكل والفكرة الموجودين أمامك.</p></div></li>
+<li class="step rv"><div class="step-ic"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/><path d="M10 13h6M10 17h6"/></svg><b class="step-n">2</b></div><div class="step-t"><h3>اقرأ الهيكل والأمثلة</h3><p>اقرأ الهيكل جيداً، ولاحظ الأمثلة الموجودة معه حتى تفهم طريقة استخدامه وكيفية بناء السكريبت. لا تكتفِ بقراءة الهيكل فقط؛ افهم كيف تم تطبيقه في الأمثلة، وما الذي يجعل تسلسل الأفكار مترابطاً.</p></div></li>
+<li class="step rv"><div class="step-ic"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1-4L16 5l3 3L8 19z"/><path d="M14 7l3 3"/></svg><b class="step-n">3</b></div><div class="step-t"><h3>طبّق الهيكل على مجالك</h3><p>خذ الهيكل نفسه، وطبّقه على تخصصك وخبرتك والجمهور الذي تستهدفه. استخدم أفكارك ومعلوماتك وأمثلتك الخاصة حتى يصبح السكريبت مناسباً لمجالك، ويعبّر عن خبرتك بدلاً من نسخ محتوى لا يشبهك.</p></div></li>
+<li class="step rv"><div class="step-ic"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3z"/></svg><b class="step-n">4</b></div><div class="step-t"><h3>صوّر الفيديو</h3><p>بعد أن تنتهي من تطبيق الهيكل وكتابة السكريبت الخاص بك، ابدأ بتصوير الفيديو. حوّل السكريبت إلى محتوى حقيقي، ثم انشر الفيديو وراقب أداءه حتى تتمكن من تطوير أسلوبك مع الوقت.</p></div></li>
+</ol>
+<div class="flow rv" aria-label="ملخص طريقة الاستخدام">
+<span>مكتبة السكريبتات</span><i aria-hidden="true">←</i><span>قراءة الهيكل والأمثلة</span><i aria-hidden="true">←</i><span>تطبيق الهيكل على المجال</span><i aria-hidden="true">←</i><span>تصوير الفيديو</span>
+</div>
+</div>
+</section>
+
 
 
 
@@ -766,43 +869,53 @@ details p{margin:0 0 26px;padding-inline:4px;color:var(--mute);max-width:720px}
 </div>
 </section>
 
-<section class="dark offer" id="offer">
+
+
+
+
+<section class="dark vs achieve" id="achieve">
 <div class="w">
-<h2>ماذا ستحصل فور انضمامك للتحدي اليوم؟</h2>
+<h2>طوّر طريقة صناعة محتواك، فيديو بعد فيديو</h2>
 <div class="orn"><i></i></div>
-<div class="box rv"><div class="in">
-<ul>
-<li><b>المجموع الأساسي: 19 قالب سكريبت فايرال</b> مُصممة هندسياً وتكتيكياً بحسب الهدف من الفيديو (سواء للانتشار، زيادة التفاعل، أو تحويل المتابعين إلى عملاء ومبيعات).</li>
-<li><b>البونص والهدية الاستثنائية: خريطة الريلز التجريبي للوصول إلى 40 مليون مشاهدة</b> — دليل عملي يرسم لك خارطة الطريق كاملة التي استخدمناها لتحقيق أكثر من 40 مليون مشاهدة.</li>
-</ul>
-<div class="inv">الاستثمار المطلوب للانضمام للتحدي</div>
-<div class="was">القيمة الإجمالية للعرض: $197</div>
-<div class="price-l">سعر التحدي الخاص اليوم</div>
-<div class="price"><span class="num now" dir="ltr" data-count="47" data-prefix="$">$47</span><span class="only">فقط!</span></div>
-<div class="sub">دفعة واحدة فقط مع وصول فوري مدى الحياة</div>
-<a class="btn" data-buy>اضغط هنا واحصل على العرض الكامل بـ 47$ فقط الآن</a>
-</div></div>
+<div class="prose dk rv">
+<p>عندما تمتلك هياكل واضحة لبناء فيديوهاتك، لن تحتاج إلى اختراع طريقة تقديم جديدة في كل مرة.</p>
+<p>يمكنك استخدام القوالب كنقطة انطلاق، وتخصيص وقتك لاختيار الأفكار المناسبة لجمهورك، وإضافة خبرتك، وتقديم الموضوع بطريقة واضحة وجذابة.</p>
+</div>
+<h3 class="sub-h gold">الفوائد</h3>
+<div class="who dk">
+<p class="rv">تقليل الوقت الذي تقضيه في بناء السكريبت من الصفر.</p>
+<p class="rv">تجربة طرق مختلفة لتقديم الموضوعات.</p>
+<p class="rv">تطوير مهارتك في كتابة الخطافات وترتيب الأفكار.</p>
+<p class="rv">الاستمرار في صناعة المحتوى بطريقة أكثر تنظيماً.</p>
+</div>
 </div>
 </section>
 
-<section>
+<section id="faq">
 <div class="w" style="max-width:860px">
 <h2>أسئلة شائعة</h2>
 <div class="orn"><i></i></div>
-<details><summary>هل سعر الـ 47$ يتضمن جميع الـ 19 قالب والبونص المجاني؟</summary><p>نعم! مقابل 47$ فقط تحصل على وصول فوري لجميع القوالب الـ 19 + خريطة الريلز التجريبي للوصول إلى 40 مليون مشاهدة بدون أي تكاليف خفية أو اشتراكات شهرية.</p></details>
-<details><summary>هل هذه القوالب تناسب مجالي خصيصاً؟</summary><p>نعم! القوالب مصممة على هيكلية علمية ونفسية للجمهور (Hook - Story - Offer)، وهي قابلة للتطبيق في أي مجال سواء كنت طبيباً، مهندساً، مدرباً، عقارياً، أو صاحب متجر.</p></details>
-<details><summary>ليس لدي خبرة في الكتابة أو التحدث أمام الكاميرا، هل أستطيع الاستفادة منها؟</summary><p>هذا هو السبب الرئيسي لإنشاء القوالب! أنت لا تحتاج للابتكار؛ القالب يوجهك كلمة بكلمة وما عليك سوى وضع خبرتك ومجالك داخل الفراغات المحددة.</p></details>
-<details><summary>هل أحتاج للبدء فوراً؟</summary><p>بمجرد الشراء، ستحصل على وصول فوري لجميع الـ 19 قالب وجدول الـ 30 يوماً لتسير على خطة التحدي بالسرعة التي تناسبك.</p></details>
+<!-- مراجعة: السؤال الأخير يعتمد على آلية التحدي الفعلية. عدّل الإجابة إن كان المنتج يتضمن خطة نشر يومية محددة -->
+<details><summary>ما المقصود بقوالب سكريبتات الريلز؟</summary><p>هي هياكل تساعدك على بناء سكريبتات فيديوهاتك. تختار القالب المناسب، وتقرأ الأمثلة الموجودة معه، ثم تطبّقه على موضوع من تخصصك.</p></details>
+<details><summary>هل هذه قوالب تصميم على Canva؟</summary><p>لا، المقصود هنا قوالب سكريبتات الريلز، وليست قوالب تصميم جرافيكي.</p></details>
+<details><summary>هل أستطيع استخدام القوالب في تخصصي؟</summary><p>نعم، يمكنك تكييف الهياكل مع تخصصك وخبرتك والجمهور الذي تستهدفه، من خلال استخدام أفكارك وأمثلتك الخاصة.</p></details>
+<details><summary>كيف أبدأ باستخدام المكتبة؟</summary><p>ابدأ بأول هيكل وأول فكرة مطروحة داخل المكتبة، واقرأ الهيكل والأمثلة، ثم طبّقه على مجالك وصوّر الفيديو.</p></details>
+<details><summary>هل أحتاج إلى خبرة في كتابة السكريبتات؟</summary><p>لا تحتاج إلى البدء من الصفر؛ فالقوالب والأمثلة تمنحك نقطة انطلاق واضحة. ستحتاج فقط إلى فهم الهيكل وتكييفه مع فكرتك وتخصصك.</p></details>
+<details><summary>هل تضمن القوالب الحصول على مشاهدات عالية؟</summary><p>لا توجد قوالب تضمن عدداً معيناً من المشاهدات. الهدف منها مساعدتك على بناء السكريبتات بطريقة منظمة، بينما تعتمد النتائج على الفكرة والتنفيذ والجمهور وعوامل أخرى.</p></details>
+<details><summary>ماذا سأحصل عليه بعد الشراء؟</summary><p>ستحصل على مكتبة تضم 19 قالب سكريبت، وفق محتويات الباقة الموضحة في الصفحة، مع وصول رقمي إلى الملفات بعد الشراء.</p></details>
+<details><summary>هل أحتاج إلى نشر فيديو يومياً لمدة 30 يوماً؟</summary><p>التحدي مبني على استخدام القوالب وتطبيقها على مجالك وتحويلها إلى فيديوهات خلال 30 يوماً. يمكنك أن تحدد وتيرة نشرك بما يناسب وقتك وتخصصك، والمهم أن تستمر في التطبيق.</p></details>
 </div>
 </section>
 
-<section class="dark final">
+<section class="dark final" id="buy">
 <div class="w">
-  <div class="cv end"><div class="cover mv" role="img" aria-label="غلاف مكتبة القوالب"><i class="bg phbg"></i><i class="ov"></i><div class="cv-t">مكتبتك الجاهزة للمحتوى الفايرال</div><div class="fan"><div class="pf" style="rotate:-64deg"><i class="pp i3"></i></div><div class="pf" style="rotate:64deg"><i class="pp i4"></i></div><div class="pf" style="rotate:-42deg"><i class="pp i4"></i></div><div class="pf" style="rotate:42deg"><i class="pp i2"></i></div><div class="pf" style="rotate:-21deg"><i class="pp i2"></i></div><div class="pf" style="rotate:21deg"><i class="pp i3"></i></div><div class="pf" style="rotate:0deg"><i class="pp i1"></i></div></div><div class="mon"><div class="scr"><div class="in"><small>قوالب سكريبت مجربة</small><b class="num">30 يوماً من النشر</b><small>بقلم حمدو</small></div></div><div class="neck"></div><div class="base"></div></div><div class="badge"><b class="num">3 خطوات</b><span>خطاف، قصة، عرض</span></div><div class="cv-s">افتح القالب، سجّل، وانشر</div></div></div>
+  <div class="cv end"><div class="cover mv" role="img" aria-label="غلاف مكتبة قوالب سكريبتات الريلز"><i class="bg phbg"></i><i class="ov"></i><div class="cv-t">مكتبة قوالب سكريبتات الريلز</div><div class="fan"><div class="pf" style="rotate:-64deg"><i class="pp i3"></i></div><div class="pf" style="rotate:64deg"><i class="pp i4"></i></div><div class="pf" style="rotate:-42deg"><i class="pp i4"></i></div><div class="pf" style="rotate:42deg"><i class="pp i2"></i></div><div class="pf" style="rotate:-21deg"><i class="pp i2"></i></div><div class="pf" style="rotate:21deg"><i class="pp i3"></i></div><div class="pf" style="rotate:0deg"><i class="pp i1"></i></div></div><div class="mon"><div class="scr"><div class="in"><small>مكتبة السكريبتات</small><b class="num">19 قالباً</b><small>بقلم حمدو</small></div></div><div class="neck"></div><div class="base"></div></div><div class="badge"><b class="num">4 خطوات</b><span>اقرأ، طبّق، صوّر</span></div><div class="cv-s">اقرأ الهيكل، طبّقه، وصوّر</div></div></div>
 <div class="orn"><i></i></div>
-
-<h2>ابدأ تحدي الـ 30 يوماً اليوم</h2>
-<a class="btn" data-buy>ابدأ تحدي الـ 30 يوماً بـ 47$ فقط واحصل على الـ 19 قالب والهدية المجانية الآن</a>
+<h2>ابدأ باستخدام مكتبة قوالب سكريبتات الريلز</h2>
+<p class="final-p">احصل على 19 قالب سكريبت، وابدأ من أول هيكل وفكرة داخل المكتبة، ثم اقرأ الأمثلة، وطبّق الهيكل على مجالك، وصوّر فيديوهاتك.</p>
+<div class="price"><span class="num now" dir="ltr" data-count="47" data-prefix="$">$47</span></div>
+<a class="btn" data-buy href="#">احصل على القوالب الآن</a>
+<div class="note">منتج رقمي. ستحصل على وصول رقمي إلى مكتبة السكريبتات بعد إتمام الدفع.</div>
 </div>
 </section>
 
@@ -955,7 +1068,7 @@ function render(p){
     bubble(fol(day/30)-fol(bubDay/30));
     bubDay=day;bubT=now;
   }
-  items.forEach((it,i)=>it.classList.toggle('on',p>=i/5-.05));
+  items.forEach((it,i)=>it.classList.toggle('on',p>=i/items.length-.05));
 }
 
 /* تنعيم الحركة: القيمة المعروضة تلحق بموضع التمرير */
